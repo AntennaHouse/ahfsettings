@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Antenna House Option Setting File.
+  
+  Copyright 2015-2016 Antenna House, Inc.
+-->
+<grammar ns="" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="script.list">
+    <choice>
+      <value>Latn</value>
+      <value>Grek</value>
+      <value>Cyrl</value>
+      <value>Arab</value>
+      <value>Hebr</value>
+      <value>Deva</value>
+      <value>Beng</value>
+      <value>Guru</value>
+      <value>Gujr</value>
+      <value>Orya</value>
+      <value>Taml</value>
+      <value>Telu</value>
+      <value>Knda</value>
+      <value>Mlym</value>
+      <value>Sinh</value>
+      <value>Thai</value>
+      <value>Khmr</value>
+      <value>Laoo</value>
+      <value>Myanmar</value>
+      <value>Hang</value>
+      <value>Hans</value>
+      <value>Hant</value>
+      <value>Jpan</value>
+      <value>Hrkt</value>
+      <value>.</value>
+      <value/>
+    </choice>
+  </define>
+  <start>
+    <ref name="formatter-config"/>
+  </start>
+  <define name="formatter-config">
+    <element name="formatter-config">
+      <optional>
+        <ref name="formatter-settings"/>
+      </optional>
+      <optional>
+        <ref name="font-settings"/>
+      </optional>
+      <optional>
+        <ref name="pdf-settings"/>
+      </optional>
+      <optional>
+        <ref name="ps-settings"/>
+      </optional>
+      <optional>
+        <ref name="rxe-settings"/>
+      </optional>
+      <optional>
+        <ref name="svg-settings"/>
+      </optional>
+      <optional>
+        <ref name="inx-settings"/>
+      </optional>
+      <optional>
+        <ref name="mif-settings"/>
+      </optional>
+      <optional>
+        <ref name="text-settings"/>
+      </optional>
+      <optional>
+        <ref name="mathml-settings"/>
+      </optional>
+      <optional>
+        <ref name="xslt-settings"/>
+      </optional>
+    </element>
+  </define>
+  <define name="formatter-settings">
+    <element name="formatter-settings">
+      <optional>
+        <attribute name="HyphenationOption">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="PrinterOrientation">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="PscriptPassThrough">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="SVGViewer">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="SeparatePrinterDuplexJob">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="WindowsFontAPI"/>
+      </optional>
+      <optional>
+        <attribute name="abbreviation-character-count">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="auto-break-footnote">
+          <choice>
+            <value>true</value>
+            <value>false</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="auto-formatter-type">
+          <choice>
+            <value>html</value>
+            <value>xhtml</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="baseline-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="bidi-override-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="bold-ratio">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="border-medium-width">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="border-thick-width">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="border-thin-width">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="css-media-type">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-CJK">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-color"/>
+      </optional>
+      <optional>
+        <attribute name="default-font-size">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-from-page-master-region">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-html-charset">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-lang"/>
+      </optional>
+      <optional>
+        <attribute name="default-lang2">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-page-height">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-page-margin-bottom"/>
+      </optional>
+      <optional>
+        <attribute name="default-page-margin-left"/>
+      </optional>
+      <optional>
+        <attribute name="default-page-margin-right"/>
+      </optional>
+      <optional>
+        <attribute name="default-page-margin-top"/>
+      </optional>
+      <optional>
+        <attribute name="default-page-width">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="fixed-width-space-treatment">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="hair-space-width"/>
+      </optional>
+      <optional>
+        <attribute name="intrusion-displace-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="issue-scale-to-fit">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="justify-leader">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="latin-ligature">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="non-starter-ideographic-space">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="normal-line-height"/>
+      </optional>
+      <optional>
+        <attribute name="normalize">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="oblique-skew">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="omit-uppercase-word-accents"/>
+      </optional>
+      <optional>
+        <attribute name="output-fo-tree">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="overflow-limit-block">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="overflow-limit-inline">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="pair-kerning">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="printer-marks-line-length"/>
+      </optional>
+      <optional>
+        <attribute name="printer-marks-line-width"/>
+      </optional>
+      <optional>
+        <attribute name="printer-marks-zero-margin"/>
+      </optional>
+      <optional>
+        <attribute name="punctuation-spacing"/>
+      </optional>
+      <optional>
+        <attribute name="punctuation-trim">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <attribute name="pxpi">
+        <data type="integer"/>
+      </attribute>
+      <optional>
+        <attribute name="ruby-align"/>
+      </optional>
+      <optional>
+        <attribute name="small-caps-emulation-size"/>
+      </optional>
+      <optional>
+        <attribute name="table-auto-layout-limit">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="table-is-reference-area">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-autospace">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-autospace-width"/>
+      </optional>
+      <optional>
+        <attribute name="text-decoration-baseline-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-decoration-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-justify-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-kashida-space"/>
+      </optional>
+      <optional>
+        <attribute name="text-orientation-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-underline-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="thin-space-width"/>
+      </optional>
+      <optional>
+        <attribute name="two-pass-formatting">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="use-default-page-margin-CSS">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="use-default-page-margin-XSL">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="vertical-block-width-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="vertical-underline-side">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="viewport-length-units-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="zwsp-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="font-settings">
+    <element name="font-settings">
+      <a:documentation>Settings for fonts</a:documentation>
+      <optional>
+        <attribute name="auto-fallback-font">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="barcode-text-font">
+          <a:documentation>Font for a linear barcode</a:documentation>
+          <choice>
+            <value>OCRB</value>
+            <value>monospace</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-font-family">
+          <a:documentation>Default font family</a:documentation>
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="fallback-glyph">
+          <a:documentation>Whether, and at what level, to report when a glyph is not found in a fallback font</a:documentation>
+          <choice>
+            <value>0</value>
+            <value>1</value>
+            <value>2</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="font-selection-mode">
+          <a:documentation>Font selection method: 5 = disregard 'font-selection-strategy'; 6 = act on 'font-selection-strategy="character-by-character"'</a:documentation>
+          <choice>
+            <value>5</value>
+            <value>6</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="font-selection-strategy">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="font-stretch-mode">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="missing-font">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="missing-glyph">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="missing-glyph-all">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="use-windows-api">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <element name="script-font">
+          <a:documentation>Generic font mapping for a script</a:documentation>
+          <optional>
+            <attribute name="cursive">
+              <a:documentation>Generic cursive font for script</a:documentation>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="fallback">
+              <a:documentation>Generic fallback font for script</a:documentation>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="fantasy">
+              <a:documentation>Generic fantasy font for script</a:documentation>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="monospace">
+              <a:documentation>Generic monospace font for script</a:documentation>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="sans-serif">
+              <a:documentation>Generic sans-serif font for script</a:documentation>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="script">
+              <a:documentation>Script code</a:documentation>
+              <ref name="script.list"/>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="serif">
+              <a:documentation>Generic serif font for script</a:documentation>
+            </attribute>
+          </optional>
+        </element>
+      </zeroOrMore>
+      <zeroOrMore>
+        <element name="font-alias">
+          <attribute name="dst">
+            <data type="NCName"/>
+          </attribute>
+          <attribute name="src"/>
+        </element>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="pdf-settings">
+    <element name="pdf-settings">
+      <optional>
+        <attribute name="EPS-processor">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="certificate-name">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="color-profile"/>
+      </optional>
+      <optional>
+        <attribute name="convert-colorspace">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="default-output-intent"/>
+      </optional>
+      <optional>
+        <attribute name="embed-all-fonts">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="embed-font-encoding"/>
+      </optional>
+      <optional>
+        <attribute name="embed-std-output-intent">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="embed-subset-font-percentage">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="encryption-level">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="error-on-embed-fault">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="error-on-missing-glyph">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="error-on-pdfx-fault">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="error-on-tagged-pdf-fault">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="ghostscript"/>
+      </optional>
+      <optional>
+        <attribute name="gif-pass-through">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="grayscale-compression">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="grayscale-downsampling">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="grayscale-downsampling-above-dpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="grayscale-downsampling-target-dpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="grayscale-jpeg-quality">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="gs-add-options"/>
+      </optional>
+      <optional>
+        <attribute name="image-color-profile">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="image-compression">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="image-downsampling">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="image-downsampling-above-dpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="image-downsampling-target-dpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="import-3D-annotation">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="import-3Dannotation">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="import-annotation-types"/>
+      </optional>
+      <optional>
+        <attribute name="import-tagged-pdf">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="import-textmarkup-annotation">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="joboptions"/>
+      </optional>
+      <optional>
+        <attribute name="jpeg-quality">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="linearized">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="monochrome-compression">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="monochrome-downsampling">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="monochrome-downsampling-above-dpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="monochrome-downsampling-target-dpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="no-accessibility">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="no-adding-or-changing-comments">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="no-assemble-doc">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="no-changing">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="no-content-copying">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="no-fill-form">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="object-compression">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="overprint">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="page-labels">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="pdf-version"/>
+      </optional>
+      <optional>
+        <attribute name="printing-allowed">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rasterize-resolution">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="reverse-page">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="rgb-conversion">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="signature">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="signature-name">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="tagged-pdf">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text-and-lineart-compression">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="transparency-color-space">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="use-launch-for-relative-uri">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <element name="embed-font">
+          <attribute name="font"/>
+        </element>
+      </optional>
+    </element>
+  </define>
+  <define name="ps-settings">
+    <element name="ps-settings">
+      <attribute name="noembed-font">
+        <data type="boolean"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="inx-settings">
+    <element name="inx-settings">
+      <optional>
+        <attribute name="block-newline">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <attribute name="output-mode">
+        <data type="NCName"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="mathml-settings">
+    <element name="mathml-settings">
+      <optional>
+        <attribute name="double_struck">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="error-display">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="fraktur">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="mode">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="monospace">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="opspace-multiplier">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="sans-serif">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="script">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="script-maxnest">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scriptminsize">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scriptsizemultiplier">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <choice>
+          <element name="variant-font">
+            <attribute name="fontfamily"/>
+            <attribute name="mathvariant">
+              <data type="NCName"/>
+            </attribute>
+          </element>
+          <group>
+            <element name="math">
+              <attribute name="axis-shift">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="big"/>
+              <attribute name="normal">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="small"/>
+            </element>
+            <element name="mfenced">
+              <attribute name="center-shift">
+                <data type="integer"/>
+              </attribute>
+            </element>
+            <element name="mfrac">
+              <attribute name="bar-lspace"/>
+              <attribute name="bar-padding"/>
+              <attribute name="bar-rspace"/>
+              <attribute name="bar-width"/>
+              <attribute name="denominator-space"/>
+              <optional>
+                <attribute name="italic-lspace">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="italic-rspace">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <attribute name="medium">
+                <data type="integer"/>
+              </attribute>
+              <optional>
+                <attribute name="neumerator-space"/>
+              </optional>
+              <optional>
+                <attribute name="numerator-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <attribute name="thick"/>
+              <attribute name="thin"/>
+            </element>
+            <element name="mi">
+              <attribute name="italic-lspace">
+                <data type="decimal"/>
+              </attribute>
+              <attribute name="italic-rspace"/>
+            </element>
+            <element name="mo">
+              <optional>
+                <attribute name="adjust-largeop-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="default-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-bottom-width">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-italic">
+                  <data type="boolean"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-largeop">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-largeop-bottom-width">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-largeop-subscript-shift">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-largeop-superscript-shift">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-largeop-top-width">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-subscript-shift">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-superscript-shift">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-top-width">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <attribute name="largeop"/>
+              <optional>
+                <attribute name="largeop-integral">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="largeop-subscript-shift">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="largeop-superscript-shift">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="paren-bottom">
+                  <data type="NCName"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="paren-top">
+                  <data type="NCName"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="paren-width-max">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="paren-width-min">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="paren-width-scale">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="paren-width-step">
+                  <data type="boolean"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="subscript-shift">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="superscript-shift">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+            </element>
+            <element name="mroot">
+              <attribute name="index-rspace"/>
+              <attribute name="index-shift"/>
+              <attribute name="padding-bottom">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="padding-left">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="padding-right">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="padding-top"/>
+              <attribute name="root-pos1.x">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="root-pos1.y"/>
+              <attribute name="root-pos2.x"/>
+              <attribute name="root-pos2.y"/>
+              <attribute name="root-pos3.x"/>
+              <attribute name="root-pos3.y"/>
+              <attribute name="root-pos4.x"/>
+              <attribute name="root-pos4.y"/>
+              <attribute name="root-width1"/>
+              <attribute name="root-width2"/>
+              <attribute name="root-width3"/>
+              <attribute name="root-width4"/>
+            </element>
+            <element name="mscript">
+              <attribute name="presubscript-italic-shift"/>
+              <attribute name="presuperscript-italic-shift"/>
+              <attribute name="script-lspace"/>
+              <attribute name="script-lspace2"/>
+              <attribute name="script-rspace"/>
+              <attribute name="script-rspace2"/>
+              <attribute name="subscript-italic-shift"/>
+              <attribute name="subscript-shift">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="superscript-italic-shift"/>
+              <attribute name="superscript-shift">
+                <data type="integer"/>
+              </attribute>
+            </element>
+            <element name="mstyle">
+              <attribute name="background">
+                <data type="NCName"/>
+              </attribute>
+              <attribute name="displaystyle">
+                <data type="boolean"/>
+              </attribute>
+              <attribute name="mediummathspace"/>
+              <attribute name="scriptlevel">
+                <data type="integer"/>
+              </attribute>
+              <attribute name="scriptminsize">
+                <data type="NMTOKEN"/>
+              </attribute>
+              <attribute name="scriptsizemultiplier"/>
+              <attribute name="thickmathspace"/>
+              <attribute name="thinmathspace"/>
+              <attribute name="verythickmathspace"/>
+              <attribute name="verythinmathspace"/>
+              <attribute name="veryverythickmathspace"/>
+              <attribute name="veryverythinmathspace"/>
+            </element>
+            <element name="mtable">
+              <attribute name="border-width"/>
+            </element>
+            <element name="munderover">
+              <attribute name="bar-padding"/>
+              <attribute name="bar-width"/>
+              <optional>
+                <attribute name="integral-largeop-overscript-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-largeop-underscript-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-overscript-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <optional>
+                <attribute name="integral-underscript-space">
+                  <data type="decimal"/>
+                </attribute>
+              </optional>
+              <attribute name="limit-size"/>
+              <attribute name="overaccent-shift"/>
+              <attribute name="overbar-space"/>
+              <attribute name="overscript-space"/>
+              <optional>
+                <attribute name="tendsto-arror-variable">
+                  <data type="boolean"/>
+                </attribute>
+              </optional>
+              <attribute name="underaccent-shift"/>
+              <attribute name="underbar-space"/>
+              <attribute name="underscript-space"/>
+            </element>
+          </group>
+        </choice>
+      </optional>
+    </element>
+  </define>
+  <define name="mif-settings">
+    <element name="mif-settings">
+      <attribute name="char-units">
+        <data type="NCName"/>
+      </attribute>
+      <optional>
+        <attribute name="image-processing">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <attribute name="output-mode">
+        <data type="NCName"/>
+      </attribute>
+      <attribute name="units">
+        <data type="NCName"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="rxe-settings">
+    <element name="rxe-settings">
+      <empty/>
+    </element>
+  </define>
+  <define name="svg-settings">
+    <element name="svg-settings">
+      <attribute name="base-uri"/>
+      <attribute name="copy-image-path"/>
+      <attribute name="copy-image-prefix"/>
+      <attribute name="embed-all-fonts">
+        <data type="boolean"/>
+      </attribute>
+      <attribute name="encoding"/>
+      <attribute name="error-on-embed-fault">
+        <data type="boolean"/>
+      </attribute>
+      <attribute name="format"/>
+      <attribute name="gzip-compression">
+        <data type="boolean"/>
+      </attribute>
+      <attribute name="image-conversion">
+        <data type="NCName"/>
+      </attribute>
+      <attribute name="image-downsampling-dpi"/>
+      <attribute name="image-downsampling-method">
+        <data type="integer"/>
+      </attribute>
+      <attribute name="image-processing">
+        <data type="NCName"/>
+      </attribute>
+      <attribute name="jpeg-quality">
+        <data type="integer"/>
+      </attribute>
+      <attribute name="rasterize-resolution">
+        <data type="integer"/>
+      </attribute>
+      <attribute name="rename-copy-image">
+        <data type="boolean"/>
+      </attribute>
+      <attribute name="single-file-max-height"/>
+      <attribute name="single-file-max-pages">
+        <data type="integer"/>
+      </attribute>
+      <attribute name="single-page-number">
+        <data type="boolean"/>
+      </attribute>
+      <attribute name="singlefile">
+        <data type="boolean"/>
+      </attribute>
+      <attribute name="svg-version">
+        <data type="decimal"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="text-settings">
+    <element name="text-settings">
+      <empty/>
+    </element>
+  </define>
+  <define name="xslt-settings">
+    <element name="xslt-settings">
+      <optional>
+        <attribute name="command"/>
+      </optional>
+      <attribute name="msxml">
+        <data type="boolean"/>
+      </attribute>
+      <optional>
+        <attribute name="param-option"/>
+      </optional>
+      <optional>
+        <element name="param">
+          <attribute name="name">
+            <data type="NCName"/>
+          </attribute>
+          <attribute name="value">
+            <data type="anyURI"/>
+          </attribute>
+        </element>
+      </optional>
+    </element>
+  </define>
+</grammar>

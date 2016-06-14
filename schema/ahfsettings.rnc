@@ -1,7 +1,55 @@
+# Antenna House Option Setting File.
+#
+# Copyright 2015-2016 Antenna House, Inc.
+
 default namespace = ""
 
-start =
+script.list =
+    'Latn'
+  | 'Grek'
+  | 'Cyrl'
+  | 'Arab'
+  | 'Hebr'
+  | 'Deva'
+  | 'Beng'
+  | 'Guru'
+  | 'Gujr'
+  | 'Orya'
+  | 'Taml'
+  | 'Telu'
+  | 'Knda'
+  | 'Mlym'
+  | 'Sinh'
+  | 'Thai'
+  | 'Khmr'
+  | 'Laoo'
+  | 'Myanmar'
+  | 'Hang'
+  | 'Hans'
+  | 'Hant'
+  | 'Jpan'
+  | 'Hrkt'
+  | '.'
+  | ''
+
+start = formatter-config
+
+formatter-config =
   element formatter-config {
+    formatter-settings?,
+    font-settings?,
+    pdf-settings?,
+    ps-settings?,
+    rxe-settings?,
+    svg-settings?,
+    inx-settings?,
+    mif-settings?,
+    text-settings?,
+    mathml-settings?,
+    xslt-settings?
+    }
+    
+formatter-settings =
     element formatter-settings {
       attribute HyphenationOption { xsd:boolean }?,
       attribute PrinterOrientation { xsd:NCName }?,
@@ -73,33 +121,51 @@ start =
       attribute vertical-underline-side { xsd:NCName }?,
       attribute viewport-length-units-mode { xsd:integer }?,
       attribute zwsp-mode { xsd:integer }?
-    },
+    }
+    
+font-settings =
+    ## Settings for fonts
     element font-settings {
        attribute auto-fallback-font { xsd:boolean }?,
+       ## Font for a linear barcode
+       attribute barcode-text-font { 'OCRB' | 'monospace' }?,
+       ## Default font family
        attribute default-font-family { xsd:NCName }?,
-       attribute fallback-glyph { xsd:integer }?,
-       attribute font-selection-mode { xsd:integer }?,
+       ## Whether, and at what level, to report when a glyph is not found in a fallback font
+       attribute fallback-glyph { '0' | '1' | '2' }?,
+       ## Font selection method: 5 = disregard 'font-selection-strategy'; 6 = act on 'font-selection-strategy="character-by-character"'
+       attribute font-selection-mode { '5' | '6' }?,
        attribute font-selection-strategy { xsd:NCName }?,
        attribute font-stretch-mode { xsd:integer }?,
        attribute missing-font { xsd:integer }?,
        attribute missing-glyph { xsd:integer }?,
        attribute missing-glyph-all { xsd:boolean }?,
        attribute use-windows-api { xsd:boolean }?,
+       ## Generic font mapping for a script
        element script-font {
+         ## Generic cursive font for script
          attribute cursive { text }?,
+         ## Generic fallback font for script
          attribute fallback { text }?,
+         ## Generic fantasy font for script
          attribute fantasy { text }?,
+         ## Generic monospace font for script
          attribute monospace { text }?,
+         ## Generic sans-serif font for script
          attribute sans-serif { text }?,
-         attribute script { xsd:NCName }?,
+         ## Script code
+         attribute script { script.list }?,
+         ## Generic serif font for script
          attribute serif { text }?
        }*,
        element font-alias {
          attribute dst { xsd:NCName },
          attribute src { text }
        }*
-     }?
-     , element pdf-settings {
+     }
+
+pdf-settings =
+     element pdf-settings {
          attribute EPS-processor { xsd:NCName }?,
          attribute certificate-name { xsd:NCName }?,
          attribute color-profile { text }?,
@@ -162,15 +228,20 @@ start =
          element embed-font {
            attribute font { text }
          }?
-       }?,
+       }
+
+ps-settings =
     element ps-settings {
       attribute noembed-font { xsd:boolean }
-    }?,
+    }
+
+inx-settings =
     element inx-settings {
        attribute block-newline { xsd:boolean }?,
        attribute output-mode { xsd:NCName }
-     },
-      element mathml-settings {
+     }
+mathml-settings =
+    element mathml-settings {
          attribute double_struck { xsd:NCName }?,
          attribute error-display { xsd:NCName }?,
          attribute fraktur { xsd:NCName }?,
@@ -313,14 +384,20 @@ start =
                attribute underscript-space { text }
              }))?
        }
-     , element mif-settings {
+
+mif-settings =
+    element mif-settings {
          attribute char-units { xsd:NCName },
          attribute image-processing { xsd:NCName }?,
          attribute output-mode { xsd:NCName },
          attribute units { xsd:NCName }
-       }?
-     , element rxe-settings { empty }?
-     , element svg-settings {
+       }
+
+rxe-settings =
+       element rxe-settings { empty }
+
+svg-settings =
+     element svg-settings {
          attribute base-uri { text },
          attribute copy-image-path { text },
          attribute copy-image-prefix { text },
@@ -341,9 +418,13 @@ start =
          attribute single-page-number { xsd:boolean },
          attribute singlefile { xsd:boolean },
          attribute svg-version { xsd:decimal }
-       }?
-     , element text-settings { empty }?
-     , element xslt-settings {
+       }
+
+text-settings =
+     element text-settings { empty }
+     
+xslt-settings =
+     element xslt-settings {
          attribute command { text }?,
          attribute msxml { xsd:boolean },
          attribute param-option { text }?,
@@ -352,4 +433,4 @@ start =
            attribute value { xsd:anyURI }
          }?
        }
-  }
+

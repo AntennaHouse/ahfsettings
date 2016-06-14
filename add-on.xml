@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xt:extensions xmlns:xt="http://www.oxygenxml.com/ns/extension"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.oxygenxml.com/ns/extension http://www.oxygenxml.com/ns/extension/extensions.xsd">
+    <xt:extension id="focheck">
+        <xt:location href="https://github.com/AntennaHouse/focheck/releases/download/v0.4.1/focheck-framework-0.4.1.zip"/>
+        <xt:version>0.0.1</xt:version>
+        <xt:oxy_version>14.0+</xt:oxy_version>
+        <xt:type>framework</xt:type>
+        <xt:author>Antenna House, Inc.</xt:author>
+        <xt:name>ahfsettings</xt:name>
+        <xt:description xmlns="http://www.w3.org/1999/xhtml">Edit AH Formatter Option Settings File.</xt:description>
+        <xt:license><![CDATA[   Copyright 2015-2016 Antenna House, Inc.
+]]></xt:license>
+    </xt:extension>
+</xt:extensions>

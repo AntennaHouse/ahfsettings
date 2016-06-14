@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ahfsettings" basedir="." default="schema.translate">
+<description>Antenna House Option Setting File.</description>
+<!--
+     Copyright 2016 Antenna House, Inc.
+-->
+
+<!-- PROPERTIES -->
+
+<dirname property="ahfsettings.basedir" file="${ant.file.ahfsettings}"/>
+
+<pathconvert property="ahfsettings.basedir.converted" dirsep="/">
+  <path location="${ahfsettings.basedir}" />
+  <!-- Ant under cygwin uses a lowercase drive letter, which some Java
+       programs don't recognise as a drive letter, so translate. -->
+  <map from="c:" to="/C:"/>
+  <map from="d:" to="/D:"/>
+  <map from="e:" to="/E:"/>
+</pathconvert>
+
+<pathconvert property="basedir.converted" dirsep="/">
+  <path location="${basedir}" />
+  <!-- Ant under cygwin uses a lowercase drive letter, which some Java
+       programs don't recognise as a drive letter, so translate. -->
+  <map from="c:" to="/C:"/>
+  <map from="d:" to="/D:"/>
+  <map from="e:" to="/E:"/>
+</pathconvert>
+
+<!-- Local file of properties determining or describing local
+     configuration. -->
+<property name="build.local.properties"
+	  location="${basedir.converted}/build.local.properties"/>
+<property file="${build.local.properties}"/>
+
+<!-- XML file of properties determining or describing local
+     configuration. -->
+<property name="build.properties.xml"
+	  location="${fochek.basedir.converted}/properties.xml"/>
+<property file="${build.properties.xml}"/>
+
+<!-- File of properties determining or describing local
+     configuration. -->
+<property name="build.properties"
+	  location="${ahfsettings.basedir.converted}/build.properties"/>
+<property file="${build.properties}"/>
+
+<!-- Where to find schema files. -->
+<property name="schema.dir" value="${ahfsettings.basedir.converted}/schema" />
+<!-- Basename of main (outermost) schema file. -->
+<property name="schema.basename" value="ahfsettings" />
+
+<tstamp>
+  <format property="timestamp" pattern="yyyy-MM-dd"/>
+</tstamp>
+
+<!-- trang.jar location depends on if run from oXygen or on OS. -->
+<condition property="trang.jar" value="${ant.home}/../../lib/trang.jar">
+  <contains string="${ant.home}" substring="oxygen" casesensitive="false" />
+</condition>
+<condition property="trang.jar" value="${trang.jar.windows}">
+  <os family="windows" />
+</condition>
+<condition property="trang.jar" value="${trang.jar.mac}">
+  <os family="mac" />
+</condition>
+<property name="trang.jar" value="${trang.jar.unix}" />
+
+<!-- TARGETS -->
+
+<target name="trang">
+  <fail message="Could not locate 'trang.jar'.">
+    <condition>
+      <not>
+	<available file="${trang.jar}" />
+      </not>
+    </condition>
+  </fail>
+</target>
+
+<target name="-rng.uptodate">
+  <uptodate property="rng.uptodate">
+    <srcfiles dir= "${schema.dir}" includes="*.rnc"/>
+    <mapper type="glob" from="*.rnc" to="*.rng"/>
+  </uptodate>
+</target>
+
+<target name="rng" depends="trang, -rng.uptodate"
+	unless="rng.uptodate">
+  <java jar="${trang.jar}" fork="true">
+    <arg value="${schema.dir}/${schema.basename}.rnc" />
+    <arg value="${schema.dir}/${schema.basename}.rng" />
+  </java>
+</target>
+
+<target name="-xsd.uptodate">
+  <uptodate property="xsd.uptodate">
+    <srcfiles dir= "${schema.dir}" includes="*.rnc"/>
+    <mapper type="glob" from="*.rnc" to="*.xsd"/>
+  </uptodate>
+</target>
+
+<target name="xsd" depends="trang, -xsd.uptodate"
+	unless="xsd.uptodate">
+  <java jar="${trang.jar}" fork="true">
+    <arg value="${schema.dir}/${schema.basename}.rnc" />
+    <arg value="${schema.dir}/${schema.basename}.xsd" />
+  </java>
+</target>
+
+<target name="-dtd.uptodate">
+  <uptodate property="dtd.uptodate">
+    <srcfiles dir= "${schema.dir}" includes="*.rnc"/>
+    <mapper type="glob" from="*.rnc" to="*.dtd"/>
+  </uptodate>
+</target>
+
+<target name="dtd" depends="trang, -dtd.uptodate"
+	unless="dtd.uptodate">
+  <java jar="${trang.jar}" fork="true">
+    <arg value="${schema.dir}/${schema.basename}.rnc" />
+    <arg value="${schema.dir}/${schema.basename}.dtd" />
+  </java>
+</target>
+
+<target name="schema.translate" depends="rng, xsd, dtd" />
+
+<!-- Release targets. -->
+
+<target name="add-on.xml.uptodate">
+  <condition property="add-on.xml.uptodate">
+    <and>
+      <uptodate srcfile="${basedir.converted}/build.properties"
+		targetfile="${basedir.converted}/add-on.xml" />
+      <isfalse value="${force}" />
+    </and>
+  </condition>
+</target>
+
+<target name="add-on.xml" depends="add-on.xml.uptodate"
+	unless="add-on.xml.uptodate"
+	description="Update the version information in 'add-on.xml'.">
+  <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
+		 encoding="UTF-8">
+    <regexp pattern="&lt;xt:version>[^&lt;]+&lt;/xt:version>" />
+    <substitution expression="&lt;xt:version>${version}&lt;/xt:version>"/>
+  </replaceregexp>
+  <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
+		 encoding="UTF-8">
+    <regexp pattern='releases/download/[^"]+' />
+    <substitution
+	expression="releases/download/v${version}/${ant.project.name}-framework-${version}.zip"/>
+  </replaceregexp>
+</target>
+
+<target name="framework.zip" depends="schema.translate, add-on.xml"
+	description="Make a Zip archive of just the oXygen framework.">
+  <mkdir dir="${ahfsettings.basedir.converted}/releases" />
+  <zip destfile="${ahfsettings.basedir.converted}/releases/${ant.project.name}-framework-${version}.zip"
+       basedir="${ahfsettings.basedir.converted}"
+       excludes="**"
+       update="true">
+    <zipfileset dir="."
+		includes="README.md, LICENSE*.md, ahfsettings.framework"
+		prefix="${ant.project.name}" />
+    <!--<zipfileset dir="css" includes="*.css" prefix="${ant.project.name}/css" />-->
+    <zipfileset dir="schema"
+		includes="catalog.xml, *.rng"
+		prefix="${ant.project.name}/schema" />
+  </zip>
+</target>
+<target name="release" depends="add-on.xml, framework.zip" />
+
+<!-- Utility targets. -->
+
+<target name="echoproperties">
+  <echoproperties />
+</target>
+
+</project>
