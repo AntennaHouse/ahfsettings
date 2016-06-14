@@ -506,6 +506,7 @@
               <a:documentation>Generic serif font for script</a:documentation>
             </attribute>
           </optional>
+          <empty/>
         </element>
       </zeroOrMore>
       <zeroOrMore>

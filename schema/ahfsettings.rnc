@@ -156,7 +156,8 @@ font-settings =
          ## Script code
          attribute script { script.list }?,
          ## Generic serif font for script
-         attribute serif { text }?
+         attribute serif { text }?,
+         empty
        }*,
        element font-alias {
          attribute dst { xsd:NCName },
