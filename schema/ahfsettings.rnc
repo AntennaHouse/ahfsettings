@@ -51,16 +51,14 @@ formatter-config =
     
 formatter-settings =
     element formatter-settings {
-      attribute HyphenationOption { xsd:boolean }?,
-      attribute PrinterOrientation { xsd:NCName }?,
-      attribute PscriptPassThrough { xsd:boolean }?,
-      attribute SVGViewer { xsd:boolean }?,
-      attribute SeparatePrinterDuplexJob { xsd:boolean }?,
-      attribute WindowsFontAPI { text }?,
       attribute abbreviation-character-count { xsd:integer }?,
       attribute auto-break-footnote { 'true' | 'false' }?,
       attribute auto-formatter-type { 'html' | 'xhtml' }?,
-      attribute baseline-mode { xsd:integer }?,
+      attribute avoid-widow-words-CJK-punctuation { 'true' | 'false' },
+      ## Whether <axf:formatter-config> is allowed
+      attribute axf-formatter-config { 'true' | 'false' }?,
+      ## Mode for handling baselines of mixed scripts: 4 = AH Formatter V4; 5 = AH Formatter V5; 6 = AH Formatter V6
+      attribute baseline-mode { '4' | '5' | '6' }?,
       attribute bidi-override-mode { xsd:integer }?,
       attribute bold-ratio { xsd:decimal }?,
       attribute border-medium-width { xsd:NMTOKEN }?,
@@ -70,7 +68,7 @@ formatter-settings =
       attribute default-CJK { xsd:NCName }?,
       attribute default-color { text }?,
       attribute default-font-size { xsd:NMTOKEN }?,
-      attribute default-from-page-master-region { xsd:boolean }?,
+      attribute default-from-page-master-region { 'false' | 'true' }?,
       attribute default-html-charset { xsd:NCName }?,
       attribute default-lang { text }?,
       attribute default-lang2 { xsd:NCName }?,
@@ -80,32 +78,44 @@ formatter-settings =
       attribute default-page-margin-right { text }?,
       attribute default-page-margin-top { text }?,
       attribute default-page-width { xsd:NMTOKEN }?,
-      attribute fixed-width-space-treatment { xsd:boolean }?,
+      ## How strictly to check 'font-family' syntax: auto | loose | strict
+      attribute family-name-syntax { 'auto' | 'loose' | 'strict' }?,
+      attribute fixed-width-space-treatment { 'false' | 'true' }?,
       attribute hair-space-width { text }?,
+      ## Whether to enable <hyphen-min> in the Hyphenation Exception Dictionary: false | true | without-exceptions
+      attribute hyphenation-min { 'false' | 'true' | 'without-exceptions' }?,
+      ## Whether to use custom hyphenation processing or TeX hyphenation dictionaries: 'true' | 'false'
+      attribute HyphenationOption { 'true' | 'false' }?,
+      ## Comma-delimited list of languages to hyphenate when HyphenationOption="true"
+      attribute hyphenation-TeX { text }?,
       attribute intrusion-displace-mode { xsd:integer }?,
-      attribute issue-scale-to-fit { xsd:boolean }?,
-      attribute justify-leader { xsd:boolean }?,
-      attribute latin-ligature { xsd:boolean }?,
-      attribute non-starter-ideographic-space { xsd:boolean }?,
+      attribute issue-scale-to-fit { 'false' | 'true' }?,
+      attribute justify-leader { 'false' | 'true' }?,
+      attribute latin-ligature { 'false' | 'true' }?,
+      attribute non-starter-ideographic-space { 'false' | 'true' }?,
       attribute normal-line-height { text }?,
       attribute normalize { xsd:NCName }?,
       attribute oblique-skew { xsd:integer }?,
       attribute omit-uppercase-word-accents { text }?,
-      attribute output-fo-tree { xsd:boolean }?,
+      attribute output-fo-tree { 'false' | 'true' }?,
       attribute overflow-limit-block { xsd:NMTOKEN }?,
       attribute overflow-limit-inline { xsd:NMTOKEN }?,
-      attribute pair-kerning { xsd:boolean }?,
+      attribute pair-kerning { 'false' | 'true' }?,
       attribute printer-marks-line-length { text }?,
       attribute printer-marks-line-width { text }?,
       attribute printer-marks-zero-margin { text }?,
+      attribute PrinterOrientation { xsd:NCName }?,
+      attribute PscriptPassThrough { 'false' | 'true' }?,
       attribute punctuation-spacing { text }?,
-      attribute punctuation-trim { xsd:boolean }?,
-      attribute pxpi { xsd:integer },
+      attribute punctuation-trim { 'false' | 'true' }?,
+      attribute pxpi { xsd:integer }?,
       attribute ruby-align { text }?,
       attribute small-caps-emulation-size { text }?,
+      attribute SeparatePrinterDuplexJob { 'false' | 'true' }?,
+      attribute SVGViewer { 'false' | 'true' }?,
       attribute table-auto-layout-limit { xsd:integer }?,
-      attribute table-is-reference-area { xsd:boolean }?,
-      attribute text-autospace { xsd:boolean }?,
+      attribute table-is-reference-area { 'false' | 'true' }?,
+      attribute text-autospace { 'false' | 'true' }?,
       attribute text-autospace-width { text }?,
       attribute text-decoration-baseline-mode { xsd:integer }?,
       attribute text-decoration-mode { xsd:integer }?,
@@ -114,19 +124,21 @@ formatter-settings =
       attribute text-orientation-mode { xsd:integer }?,
       attribute text-underline-mode { xsd:integer }?,
       attribute thin-space-width { text }?,
-      attribute two-pass-formatting { xsd:boolean }?,
-      attribute use-default-page-margin-CSS { xsd:boolean }?,
-      attribute use-default-page-margin-XSL { xsd:boolean }?,
+      attribute two-pass-formatting { 'false' | 'true' }?,
+      attribute use-default-page-margin-CSS { 'false' | 'true' }?,
+      attribute use-default-page-margin-XSL { 'false' | 'true' }?,
       attribute vertical-block-width-mode { xsd:integer }?,
       attribute vertical-underline-side { xsd:NCName }?,
       attribute viewport-length-units-mode { xsd:integer }?,
-      attribute zwsp-mode { xsd:integer }?
+      attribute WindowsFontAPI { text }?,
+      ## ZERO WIDTH SPACE (U+200B) compatibility mode: 5 | 6
+      attribute zwsp-mode { '5' | '6' }?
     }
     
 font-settings =
     ## Settings for fonts
     element font-settings {
-       attribute auto-fallback-font { xsd:boolean }?,
+       attribute auto-fallback-font { 'false' | 'true' }?,
        ## Font for a linear barcode
        attribute barcode-text-font { 'OCRB' | 'monospace' }?,
        ## Default font family
@@ -138,9 +150,10 @@ font-settings =
        attribute font-selection-strategy { xsd:NCName }?,
        attribute font-stretch-mode { xsd:integer }?,
        attribute missing-font { xsd:integer }?,
-       attribute missing-glyph { xsd:integer }?,
-       attribute missing-glyph-all { xsd:boolean }?,
-       attribute use-windows-api { xsd:boolean }?,
+       ## Whether to warn when glyph not found: [ = no message; 1 = level 1 error message; 2 = level 2 error message
+       attribute missing-glyph { '0' | '1' | '2' }?,
+       attribute missing-glyph-all { 'false' | 'true' }?,
+       attribute use-windows-api { 'false' | 'true' }?,
        ## Generic font mapping for a script
        element script-font {
          ## Generic cursive font for script
@@ -160,85 +173,112 @@ font-settings =
          empty
        }*,
        element font-alias {
-         attribute dst { xsd:NCName },
-         attribute src { text }
+         ## Name of font to alias
+         attribute src { text },
+         ## Name of font to use in place of source font
+         attribute dst { text }
        }*
      }
 
 pdf-settings =
      element pdf-settings {
-         attribute EPS-processor { xsd:NCName }?,
+         ## Whether JavaScript specified by openaction or axf:action-type is enabled: true | false
+         attribute allow-javascript { 'true' | 'false' }?,
          attribute certificate-name { xsd:NCName }?,
          attribute color-profile { text }?,
-         attribute convert-colorspace { xsd:boolean }?,
+         attribute convert-colorspace { 'false' | 'true' }?,
          attribute default-output-intent { text }?,
-         attribute embed-all-fonts { xsd:NCName }?,
+         ## Whether to embed all embeddable fonts in PDF: false | true | base14
+         attribute embed-all-fonts { 'false' | 'true' | 'base14' }?,
          attribute embed-font-encoding { text }?,
-         attribute embed-std-output-intent { xsd:boolean }?,
+         attribute embed-std-output-intent { 'false' | 'true' }?,
          attribute embed-subset-font-percentage { xsd:integer }?,
          attribute encryption-level { xsd:NMTOKEN }?,
-         attribute error-on-embed-fault { xsd:boolean }?,
-         attribute error-on-missing-glyph { xsd:boolean }?,
-         attribute error-on-pdfx-fault { xsd:boolean }?,
-         attribute error-on-tagged-pdf-fault { xsd:boolean }?,
+         attribute EPS-processor { xsd:NCName }?,
+         attribute error-on-embed-fault { 'false' | 'true' }?,
+         attribute error-on-missing-glyph { 'false' | 'true' }?,
+         attribute error-on-pdfx-fault { 'false' | 'true' }?,
+         attribute error-on-tagged-pdf-fault { 'false' | 'true' }?,
          attribute ghostscript { text }?,
-         attribute gif-pass-through { xsd:boolean }?,
+         attribute gif-pass-through { 'false' | 'true' }?,
          attribute grayscale-compression { xsd:NCName }?,
          attribute grayscale-downsampling { xsd:NCName }?,
          attribute grayscale-downsampling-above-dpi { xsd:integer }?,
          attribute grayscale-downsampling-target-dpi { xsd:integer }?,
          attribute grayscale-jpeg-quality { xsd:integer }?,
          attribute gs-add-options { text }?,
-         attribute image-color-profile { xsd:boolean }?,
+         attribute image-color-profile { 'false' | 'true' }?,
          attribute image-compression { xsd:NCName }?,
          attribute image-downsampling { xsd:NCName }?,
          attribute image-downsampling-above-dpi { xsd:integer }?,
          attribute image-downsampling-target-dpi { xsd:integer }?,
-         attribute import-3D-annotation { xsd:boolean }?,
-         attribute import-3Dannotation { xsd:boolean }?,
+         attribute import-3D-annotation { 'false' | 'true' }?,
+         attribute import-3Dannotation { 'false' | 'true' }?,
          attribute import-annotation-types { text }?,
-         attribute import-tagged-pdf { xsd:boolean }?,
-         attribute import-textmarkup-annotation { xsd:boolean }?,
+         attribute import-tagged-pdf { 'false' | 'true' }?,
+         attribute import-textmarkup-annotation { 'false' | 'true' }?,
          attribute joboptions { text }?,
          attribute jpeg-quality { xsd:integer }?,
-         attribute linearized { xsd:boolean }?,
+         attribute linearized { 'false' | 'true' }?,
          attribute monochrome-compression { xsd:NCName }?,
          attribute monochrome-downsampling { xsd:NCName }?,
          attribute monochrome-downsampling-above-dpi { xsd:integer }?,
          attribute monochrome-downsampling-target-dpi { xsd:integer }?,
-         attribute no-accessibility { xsd:boolean }?,
-         attribute no-adding-or-changing-comments { xsd:boolean }?,
-         attribute no-assemble-doc { xsd:boolean }?,
-         attribute no-changing { xsd:boolean }?,
-         attribute no-content-copying { xsd:boolean }?,
-         attribute no-fill-form { xsd:boolean }?,
-         attribute object-compression { xsd:boolean }?,
+         ## Whether to embed multimedia in PDF when axf:multimedia-treatment="auto": embed | absolute-link | relative-link | richmedia | richmedia-windowed
+         attribute multimedia-treatment { 'embed' | 'absolute-link' | 'relative-link' | 'richmedia' | 'richmedia-windowed' }?,
+         attribute new-tagging-mode { 'false' | 'true' }?,
+         ## Whether to permit text access for screen reader devices of PDF files: false | true
+         attribute no-accessibility { 'false' | 'true' }?,
+         attribute no-adding-or-changing-comments { 'false' | 'true' }?,
+         attribute no-assemble-doc { 'false' | 'true' }?,
+         attribute no-changing { 'false' | 'true' }?,
+         attribute no-content-copying { 'false' | 'true' }?,
+         attribute no-fill-form { 'false' | 'true' }?,
+         attribute object-compression { 'false' | 'true' }?,
          attribute overprint { xsd:NCName }?,
-         attribute page-labels { xsd:boolean }?,
+         attribute page-labels { 'false' | 'true' }?,
          attribute pdf-version { text }?,
          attribute printing-allowed { xsd:NCName }?,
          attribute rasterize-resolution { xsd:integer }?,
-         attribute reverse-page { xsd:boolean }?,
+         attribute reverse-page { 'false' | 'true' }?,
          attribute rgb-conversion { xsd:NCName }?,
-         attribute signature { xsd:boolean }?,
+         attribute signature { 'false' | 'true' }?,
          attribute signature-name { xsd:NCName }?,
-         attribute tagged-pdf { xsd:boolean }?,
-         attribute text-and-lineart-compression { xsd:boolean }?,
+         attribute tagged-pdf { 'false' | 'true' }?,
+         attribute text-and-lineart-compression { 'false' | 'true' }?,
          attribute transparency-color-space { xsd:NCName }?,
-         attribute use-launch-for-relative-uri { xsd:boolean }?,
-         element embed-font {
+         attribute use-launch-for-relative-uri { 'false' | 'true' }?,
+         pdf-settings.model
+}
+
+pdf-settings.model =
+   (embed-font*, (tag-role-map, embed-font*)?)
+
+embed-font =
+   element embed-font {
            attribute font { text }
-         }?
-       }
+   }
+
+tag-role-map =
+   element tag-role-map {
+      tag-element+
+   }
+
+tag-element =
+   element tag-element {
+      attribute tag-base-name { token },
+      attribute tag-derived-name { token },
+      empty
+   }
 
 ps-settings =
     element ps-settings {
-      attribute noembed-font { xsd:boolean }
+      attribute noembed-font { 'false' | 'true' }
     }
 
 inx-settings =
     element inx-settings {
-       attribute block-newline { xsd:boolean }?,
+       attribute block-newline { 'false' | 'true' }?,
        attribute output-mode { xsd:NCName }
      }
 mathml-settings =
@@ -289,7 +329,7 @@ mathml-settings =
                attribute adjust-largeop-space { xsd:decimal }?,
                attribute default-space { xsd:decimal }?,
                attribute integral-bottom-width { xsd:decimal }?,
-               attribute integral-italic { xsd:boolean }?,
+               attribute integral-italic { 'false' | 'true' }?,
                attribute integral-largeop { xsd:integer }?,
                attribute integral-largeop-bottom-width { xsd:decimal }?,
                attribute integral-largeop-subscript-shift {
@@ -311,7 +351,7 @@ mathml-settings =
                attribute paren-width-max { xsd:integer }?,
                attribute paren-width-min { xsd:decimal }?,
                attribute paren-width-scale { xsd:decimal }?,
-               attribute paren-width-step { xsd:boolean }?,
+               attribute paren-width-step { 'false' | 'true' }?,
                attribute subscript-shift { xsd:integer }?,
                attribute superscript-shift { xsd:decimal }?
              },
@@ -349,7 +389,7 @@ mathml-settings =
              },
              element mstyle {
                attribute background { xsd:NCName },
-               attribute displaystyle { xsd:boolean },
+               attribute displaystyle { 'false' | 'true' },
                attribute mediummathspace { text },
                attribute scriptlevel { xsd:integer },
                attribute scriptminsize { xsd:NMTOKEN },
@@ -379,7 +419,7 @@ mathml-settings =
                attribute overaccent-shift { text },
                attribute overbar-space { text },
                attribute overscript-space { text },
-               attribute tendsto-arror-variable { xsd:boolean }?,
+               attribute tendsto-arror-variable { 'false' | 'true' }?,
                attribute underaccent-shift { text },
                attribute underbar-space { text },
                attribute underscript-space { text }
@@ -402,22 +442,22 @@ svg-settings =
          attribute base-uri { text },
          attribute copy-image-path { text },
          attribute copy-image-prefix { text },
-         attribute embed-all-fonts { xsd:boolean },
+         attribute embed-all-fonts { 'false' | 'true' },
          attribute encoding { text },
-         attribute error-on-embed-fault { xsd:boolean },
+         attribute error-on-embed-fault { 'false' | 'true' },
          attribute format { text },
-         attribute gzip-compression { xsd:boolean },
+         attribute gzip-compression { 'false' | 'true' },
          attribute image-conversion { xsd:NCName },
          attribute image-downsampling-dpi { text },
          attribute image-downsampling-method { xsd:integer },
          attribute image-processing { xsd:NCName },
          attribute jpeg-quality { xsd:integer },
          attribute rasterize-resolution { xsd:integer },
-         attribute rename-copy-image { xsd:boolean },
+         attribute rename-copy-image { 'false' | 'true' },
          attribute single-file-max-height { text },
          attribute single-file-max-pages { xsd:integer },
-         attribute single-page-number { xsd:boolean },
-         attribute singlefile { xsd:boolean },
+         attribute single-page-number { 'false' | 'true' },
+         attribute singlefile { 'false' | 'true' },
          attribute svg-version { xsd:decimal }
        }
 
@@ -427,7 +467,7 @@ text-settings =
 xslt-settings =
      element xslt-settings {
          attribute command { text }?,
-         attribute msxml { xsd:boolean },
+         attribute msxml { 'false' | 'true' },
          attribute param-option { text }?,
          element param {
            attribute name { xsd:NCName },

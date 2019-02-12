@@ -78,34 +78,6 @@
   <define name="formatter-settings">
     <element name="formatter-settings">
       <optional>
-        <attribute name="HyphenationOption">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="PrinterOrientation">
-          <data type="NCName"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="PscriptPassThrough">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="SVGViewer">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="SeparatePrinterDuplexJob">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="WindowsFontAPI"/>
-      </optional>
-      <optional>
         <attribute name="abbreviation-character-count">
           <data type="integer"/>
         </attribute>
@@ -126,9 +98,29 @@
           </choice>
         </attribute>
       </optional>
+      <attribute name="avoid-widow-words-CJK-punctuation">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+      <optional>
+        <attribute name="axf-formatter-config">
+          <a:documentation>Whether &lt;axf:formatter-config&gt; is allowed</a:documentation>
+          <choice>
+            <value>true</value>
+            <value>false</value>
+          </choice>
+        </attribute>
+      </optional>
       <optional>
         <attribute name="baseline-mode">
-          <data type="integer"/>
+          <a:documentation>Mode for handling baselines of mixed scripts: 4 = AH Formatter V4; 5 = AH Formatter V5; 6 = AH Formatter V6</a:documentation>
+          <choice>
+            <value>4</value>
+            <value>5</value>
+            <value>6</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -176,7 +168,10 @@
       </optional>
       <optional>
         <attribute name="default-from-page-master-region">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -215,12 +210,49 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="family-name-syntax">
+          <a:documentation>How strictly to check 'font-family' syntax: auto | loose | strict</a:documentation>
+          <choice>
+            <value>auto</value>
+            <value>loose</value>
+            <value>strict</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="fixed-width-space-treatment">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="hair-space-width"/>
+      </optional>
+      <optional>
+        <attribute name="hyphenation-min">
+          <a:documentation>Whether to enable &lt;hyphen-min&gt; in the Hyphenation Exception Dictionary: false | true | without-exceptions</a:documentation>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+            <value>without-exceptions</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="HyphenationOption">
+          <a:documentation>Whether to use custom hyphenation processing or TeX hyphenation dictionaries: 'true' | 'false'</a:documentation>
+          <choice>
+            <value>true</value>
+            <value>false</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="hyphenation-TeX">
+          <a:documentation>Comma-delimited list of languages to hyphenate when HyphenationOption="true"</a:documentation>
+        </attribute>
       </optional>
       <optional>
         <attribute name="intrusion-displace-mode">
@@ -229,22 +261,34 @@
       </optional>
       <optional>
         <attribute name="issue-scale-to-fit">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="justify-leader">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="latin-ligature">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="non-starter-ideographic-space">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -265,7 +309,10 @@
       </optional>
       <optional>
         <attribute name="output-fo-tree">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -280,7 +327,10 @@
       </optional>
       <optional>
         <attribute name="pair-kerning">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -293,21 +343,55 @@
         <attribute name="printer-marks-zero-margin"/>
       </optional>
       <optional>
+        <attribute name="PrinterOrientation">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="PscriptPassThrough">
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="punctuation-spacing"/>
       </optional>
       <optional>
         <attribute name="punctuation-trim">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
-      <attribute name="pxpi">
-        <data type="integer"/>
-      </attribute>
+      <optional>
+        <attribute name="pxpi">
+          <data type="integer"/>
+        </attribute>
+      </optional>
       <optional>
         <attribute name="ruby-align"/>
       </optional>
       <optional>
         <attribute name="small-caps-emulation-size"/>
+      </optional>
+      <optional>
+        <attribute name="SeparatePrinterDuplexJob">
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="SVGViewer">
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
+        </attribute>
       </optional>
       <optional>
         <attribute name="table-auto-layout-limit">
@@ -316,12 +400,18 @@
       </optional>
       <optional>
         <attribute name="table-is-reference-area">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="text-autospace">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -360,17 +450,26 @@
       </optional>
       <optional>
         <attribute name="two-pass-formatting">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="use-default-page-margin-CSS">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="use-default-page-margin-XSL">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -389,8 +488,15 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="WindowsFontAPI"/>
+      </optional>
+      <optional>
         <attribute name="zwsp-mode">
-          <data type="integer"/>
+          <a:documentation>ZERO WIDTH SPACE (U+200B) compatibility mode: 5 | 6</a:documentation>
+          <choice>
+            <value>5</value>
+            <value>6</value>
+          </choice>
         </attribute>
       </optional>
     </element>
@@ -400,7 +506,10 @@
       <a:documentation>Settings for fonts</a:documentation>
       <optional>
         <attribute name="auto-fallback-font">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -454,17 +563,28 @@
       </optional>
       <optional>
         <attribute name="missing-glyph">
-          <data type="integer"/>
+          <a:documentation>Whether to warn when glyph not found: [ = no message; 1 = level 1 error message; 2 = level 2 error message</a:documentation>
+          <choice>
+            <value>0</value>
+            <value>1</value>
+            <value>2</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="missing-glyph-all">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="use-windows-api">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <zeroOrMore>
@@ -511,10 +631,12 @@
       </zeroOrMore>
       <zeroOrMore>
         <element name="font-alias">
-          <attribute name="dst">
-            <data type="NCName"/>
+          <attribute name="src">
+            <a:documentation>Name of font to alias</a:documentation>
           </attribute>
-          <attribute name="src"/>
+          <attribute name="dst">
+            <a:documentation>Name of font to use in place of source font</a:documentation>
+          </attribute>
         </element>
       </zeroOrMore>
     </element>
@@ -522,8 +644,12 @@
   <define name="pdf-settings">
     <element name="pdf-settings">
       <optional>
-        <attribute name="EPS-processor">
-          <data type="NCName"/>
+        <attribute name="allow-javascript">
+          <a:documentation>Whether JavaScript specified by openaction or axf:action-type is enabled: true | false</a:documentation>
+          <choice>
+            <value>true</value>
+            <value>false</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -536,7 +662,10 @@
       </optional>
       <optional>
         <attribute name="convert-colorspace">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -544,7 +673,12 @@
       </optional>
       <optional>
         <attribute name="embed-all-fonts">
-          <data type="NCName"/>
+          <a:documentation>Whether to embed all embeddable fonts in PDF: false | true | base14</a:documentation>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+            <value>base14</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -552,7 +686,10 @@
       </optional>
       <optional>
         <attribute name="embed-std-output-intent">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -566,23 +703,40 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="EPS-processor">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="error-on-embed-fault">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="error-on-missing-glyph">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="error-on-pdfx-fault">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="error-on-tagged-pdf-fault">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -590,7 +744,10 @@
       </optional>
       <optional>
         <attribute name="gif-pass-through">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -623,7 +780,10 @@
       </optional>
       <optional>
         <attribute name="image-color-profile">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -648,12 +808,18 @@
       </optional>
       <optional>
         <attribute name="import-3D-annotation">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="import-3Dannotation">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -661,12 +827,18 @@
       </optional>
       <optional>
         <attribute name="import-tagged-pdf">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="import-textmarkup-annotation">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -679,7 +851,10 @@
       </optional>
       <optional>
         <attribute name="linearized">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -703,38 +878,80 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="multimedia-treatment">
+          <a:documentation>Whether to embed multimedia in PDF when axf:multimedia-treatment="auto": embed | absolute-link | relative-link | richmedia | richmedia-windowed</a:documentation>
+          <choice>
+            <value>embed</value>
+            <value>absolute-link</value>
+            <value>relative-link</value>
+            <value>richmedia</value>
+            <value>richmedia-windowed</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="new-tagging-mode">
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="no-accessibility">
-          <data type="boolean"/>
+          <a:documentation>Whether to permit text access for screen reader devices of PDF files: false | true</a:documentation>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="no-adding-or-changing-comments">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="no-assemble-doc">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="no-changing">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="no-content-copying">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="no-fill-form">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="object-compression">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -744,7 +961,10 @@
       </optional>
       <optional>
         <attribute name="page-labels">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -762,7 +982,10 @@
       </optional>
       <optional>
         <attribute name="reverse-page">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -772,7 +995,10 @@
       </optional>
       <optional>
         <attribute name="signature">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -782,12 +1008,18 @@
       </optional>
       <optional>
         <attribute name="tagged-pdf">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
         <attribute name="text-and-lineart-compression">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <optional>
@@ -797,20 +1029,56 @@
       </optional>
       <optional>
         <attribute name="use-launch-for-relative-uri">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
-      <optional>
-        <element name="embed-font">
-          <attribute name="font"/>
-        </element>
-      </optional>
+      <ref name="pdf-settings.model"/>
+    </element>
+  </define>
+  <define name="pdf-settings.model">
+    <zeroOrMore>
+      <ref name="embed-font"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="tag-role-map"/>
+      <zeroOrMore>
+        <ref name="embed-font"/>
+      </zeroOrMore>
+    </optional>
+  </define>
+  <define name="embed-font">
+    <element name="embed-font">
+      <attribute name="font"/>
+    </element>
+  </define>
+  <define name="tag-role-map">
+    <element name="tag-role-map">
+      <oneOrMore>
+        <ref name="tag-element"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="tag-element">
+    <element name="tag-element">
+      <attribute name="tag-base-name">
+        <data type="token" datatypeLibrary=""/>
+      </attribute>
+      <attribute name="tag-derived-name">
+        <data type="token" datatypeLibrary=""/>
+      </attribute>
+      <empty/>
     </element>
   </define>
   <define name="ps-settings">
     <element name="ps-settings">
       <attribute name="noembed-font">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
     </element>
   </define>
@@ -818,7 +1086,10 @@
     <element name="inx-settings">
       <optional>
         <attribute name="block-newline">
-          <data type="boolean"/>
+          <choice>
+            <value>false</value>
+            <value>true</value>
+          </choice>
         </attribute>
       </optional>
       <attribute name="output-mode">
@@ -961,7 +1232,10 @@
               </optional>
               <optional>
                 <attribute name="integral-italic">
-                  <data type="boolean"/>
+                  <choice>
+                    <value>false</value>
+                    <value>true</value>
+                  </choice>
                 </attribute>
               </optional>
               <optional>
@@ -1047,7 +1321,10 @@
               </optional>
               <optional>
                 <attribute name="paren-width-step">
-                  <data type="boolean"/>
+                  <choice>
+                    <value>false</value>
+                    <value>true</value>
+                  </choice>
                 </attribute>
               </optional>
               <optional>
@@ -1110,7 +1387,10 @@
                 <data type="NCName"/>
               </attribute>
               <attribute name="displaystyle">
-                <data type="boolean"/>
+                <choice>
+                  <value>false</value>
+                  <value>true</value>
+                </choice>
               </attribute>
               <attribute name="mediummathspace"/>
               <attribute name="scriptlevel">
@@ -1159,7 +1439,10 @@
               <attribute name="overscript-space"/>
               <optional>
                 <attribute name="tendsto-arror-variable">
-                  <data type="boolean"/>
+                  <choice>
+                    <value>false</value>
+                    <value>true</value>
+                  </choice>
                 </attribute>
               </optional>
               <attribute name="underaccent-shift"/>
@@ -1200,15 +1483,24 @@
       <attribute name="copy-image-path"/>
       <attribute name="copy-image-prefix"/>
       <attribute name="embed-all-fonts">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <attribute name="encoding"/>
       <attribute name="error-on-embed-fault">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <attribute name="format"/>
       <attribute name="gzip-compression">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <attribute name="image-conversion">
         <data type="NCName"/>
@@ -1227,17 +1519,26 @@
         <data type="integer"/>
       </attribute>
       <attribute name="rename-copy-image">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <attribute name="single-file-max-height"/>
       <attribute name="single-file-max-pages">
         <data type="integer"/>
       </attribute>
       <attribute name="single-page-number">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <attribute name="singlefile">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <attribute name="svg-version">
         <data type="decimal"/>
@@ -1255,7 +1556,10 @@
         <attribute name="command"/>
       </optional>
       <attribute name="msxml">
-        <data type="boolean"/>
+        <choice>
+          <value>false</value>
+          <value>true</value>
+        </choice>
       </attribute>
       <optional>
         <attribute name="param-option"/>
