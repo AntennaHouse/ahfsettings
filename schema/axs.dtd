@@ -1,0 +1,526 @@
+<?xml encoding="UTF-8"?>
+
+<!--
+Antenna House Option Setting File.
+
+Copyright 2015-2019 Antenna House, Inc.
+-->
+
+<!-- default namespace = "" -->
+
+<!ENTITY % ah.boolean "false|true">
+
+<!ENTITY % compression.list "auto|zlib|jpeg|jpeg2000|keeplzw|auto2k
+                             |keeplzw2k">
+
+<!ENTITY % downsampling.list "none|average|bicubic|subsampling">
+
+<!ENTITY % dpi.model "CDATA">
+
+<!ENTITY % jpeg-quality.model "CDATA">
+
+<!ENTITY % monochrome.compression.list "ccitt4|ccitt3|runlength|zlib
+                                        |none">
+
+<!ENTITY % pass-through.model "CDATA">
+
+<!ENTITY % pdf-version.list "CDATA">
+
+<!ENTITY % script.list "CDATA">
+
+<!ENTITY % formatter-config.model "formatter-settings?,font-settings?,
+                                   pdf-settings?,ps-settings?,
+                                   mathml-settings?,rxe-settings?,
+                                   svg-settings?,inx-settings?,
+                                   mif-settings?,cgm-settings?,
+                                   text-settings?,xslt-settings?">
+
+<!-- start = formatter-config -->
+
+<!ELEMENT formatter-config (%formatter-config.model;)>
+
+<!ELEMENT formatter-settings EMPTY>
+<!ATTLIST formatter-settings
+  abbreviation-character-count CDATA #IMPLIED
+  auto-break-footnote (%ah.boolean;) #IMPLIED
+  auto-formatter-type (html|xhtml) #IMPLIED
+  avoid-widow-words-CJK-punctuation (%ah.boolean;) #REQUIRED
+  axf-formatter-config (%ah.boolean;) #IMPLIED
+  baseline-mode (4|5|6) #IMPLIED
+  bidi-override-mode CDATA #IMPLIED
+  bold-ratio CDATA #IMPLIED
+  border-medium-width NMTOKEN #IMPLIED
+  border-thick-width NMTOKEN #IMPLIED
+  border-thin-width NMTOKEN #IMPLIED
+  css-media-type NMTOKEN #IMPLIED
+  default-CJK NMTOKEN #IMPLIED
+  default-color CDATA #IMPLIED
+  default-font-size NMTOKEN #IMPLIED
+  default-from-page-master-region (%ah.boolean;) #IMPLIED
+  default-html-charset NMTOKEN #IMPLIED
+  default-lang CDATA #IMPLIED
+  default-lang2 NMTOKEN #IMPLIED
+  default-page-height NMTOKEN #IMPLIED
+  default-page-margin-bottom CDATA #IMPLIED
+  default-page-margin-left CDATA #IMPLIED
+  default-page-margin-right CDATA #IMPLIED
+  default-page-margin-top CDATA #IMPLIED
+  default-page-width NMTOKEN #IMPLIED
+  descendant-or-self-files (%ah.boolean;) #IMPLIED
+  external-entity (%ah.boolean;) #IMPLIED
+  family-name-syntax (auto|loose|strict) #IMPLIED
+  fixed-width-space-treatment (%ah.boolean;) #IMPLIED
+  hair-space-width CDATA #IMPLIED
+  hyphenation-min (%ah.boolean;|without-exceptions) #IMPLIED
+  HyphenationOption (%ah.boolean;) #IMPLIED
+  hyphenation-TeX CDATA #IMPLIED
+  hyphen-min (%ah.boolean;) #IMPLIED
+  intrusion-displace-mode CDATA #IMPLIED
+  img-alt (%ah.boolean;) #IMPLIED
+  issue-scale-to-fit (%ah.boolean;) #IMPLIED
+  justify-leader (%ah.boolean;) #IMPLIED
+  justify-rowspan-height (%ah.boolean;) #IMPLIED
+  keep-footnote-anchor (%ah.boolean;) #IMPLIED
+  latin-ligature (%ah.boolean;) #IMPLIED
+  non-starter-ideographic-space (%ah.boolean;) #IMPLIED
+  normal-line-height CDATA #IMPLIED
+  normalize NMTOKEN #IMPLIED
+  oblique-skew CDATA #IMPLIED
+  omit-uppercase-word-accents CDATA #IMPLIED
+  output-area-id (%ah.boolean;) #IMPLIED
+  output-fo-tree (%ah.boolean;) #IMPLIED
+  overflow-limit-block NMTOKEN #IMPLIED
+  overflow-limit-inline NMTOKEN #IMPLIED
+  pair-kerning (%ah.boolean;) #IMPLIED
+  printer-marks-line-length CDATA #IMPLIED
+  printer-marks-line-width CDATA #IMPLIED
+  printer-marks-zero-margin CDATA #IMPLIED
+  PrinterOrientation NMTOKEN #IMPLIED
+  PscriptPassThrough (%ah.boolean;) #IMPLIED
+  punctuation-spacing CDATA #IMPLIED
+  punctuation-trim (%ah.boolean;) #IMPLIED
+  pxpi CDATA #IMPLIED
+  ruby-align CDATA #IMPLIED
+  small-caps-emulation-size CDATA #IMPLIED
+  SeparatePrinterDuplexJob (%ah.boolean;) #IMPLIED
+  splitting-blocks-space (%ah.boolean;) #IMPLIED
+  SVGViewer (%ah.boolean;) #IMPLIED
+  tab-overlap-treatment CDATA #IMPLIED
+  table-auto-layout-limit CDATA #IMPLIED
+  table-is-reference-area (%ah.boolean;) #IMPLIED
+  text-autospace (%ah.boolean;) #IMPLIED
+  text-autospace-width CDATA #IMPLIED
+  text-decoration-baseline-mode CDATA #IMPLIED
+  text-decoration-mode CDATA #IMPLIED
+  text-justify-mode CDATA #IMPLIED
+  text-kashida-space CDATA #IMPLIED
+  text-orientation-mode CDATA #IMPLIED
+  textshadow-blur-cannot-embed-font (%ah.boolean;) #IMPLIED
+  textshadow-resolution-minimum-dpi %dpi.model; #IMPLIED
+  textshadow-resolution-pixel-per-em %dpi.model; #IMPLIED
+  text-underline-mode CDATA #IMPLIED
+  thin-space-width CDATA #IMPLIED
+  two-pass-formatting (%ah.boolean;) #IMPLIED
+  use-default-page-margin-CSS (%ah.boolean;) #IMPLIED
+  use-default-page-margin-XSL (%ah.boolean;) #IMPLIED
+  vertical-block-width-mode CDATA #IMPLIED
+  vertical-coloring-text CDATA #IMPLIED
+  vertical-underline-side NMTOKEN #IMPLIED
+  viewport-length-units-mode CDATA #IMPLIED
+  WindowsFontAPI CDATA #IMPLIED
+  zwsp-mode (5|6) #IMPLIED>
+
+<!ELEMENT font-settings (script-font*,font-alias*)>
+<!ATTLIST font-settings
+  auto-fallback-font (%ah.boolean;) #IMPLIED
+  barcode-text-font (OCRB|monospace) #IMPLIED
+  default-font-family NMTOKEN #IMPLIED
+  fallback-glyph (0|1|2) #IMPLIED
+  font-selection-mode (5|6) #IMPLIED
+  font-selection-strategy NMTOKEN #IMPLIED
+  font-stretch-mode CDATA #IMPLIED
+  missing-font (0|1|2) #IMPLIED
+  missing-glyph (0|1|2) #IMPLIED
+  missing-glyph-all (%ah.boolean;) #IMPLIED
+  use-windows-api (%ah.boolean;) #IMPLIED>
+
+<!ENTITY % script-font.model "">
+
+<!ENTITY % script-font.attlist "
+  cursive CDATA #IMPLIED
+  fallback CDATA #IMPLIED
+  fantasy CDATA #IMPLIED
+  monospace CDATA #IMPLIED
+  sans-serif CDATA #IMPLIED
+  script %script.list; #IMPLIED
+  serif CDATA #IMPLIED">
+
+<!ELEMENT script-font EMPTY>
+<!ATTLIST script-font
+  %script-font.attlist;
+  %script-font.model;>
+
+<!ENTITY % font-alias.model "">
+
+<!ENTITY % font-alias.attlist "
+  src CDATA #REQUIRED
+  dst CDATA #REQUIRED">
+
+<!ELEMENT font-alias EMPTY>
+<!ATTLIST font-alias
+  %font-alias.attlist;
+  %font-alias.model;>
+
+<!ENTITY % pdf-settings.model "embed-font*,(tag-role-map,embed-font*)?">
+
+<!ELEMENT pdf-settings (%pdf-settings.model;)>
+
+<!ATTLIST pdf-settings
+  allow-javascript (%ah.boolean;) #IMPLIED
+  certificate-name NMTOKEN #IMPLIED
+  color-compression (%compression.list;) #IMPLIED
+  color-compression-default (%compression.list;) #IMPLIED
+  color-compression-minimum (%compression.list;) #IMPLIED
+  color-conversion (none|black|gray|all-gray|all-cmyk) #IMPLIED
+  color-downsampling (%downsampling.list;) #IMPLIED
+  color-downsampling-above-dpi %dpi.model; #IMPLIED
+  color-downsampling-target-dpi %dpi.model; #IMPLIED
+  color-downsampling-default (%downsampling.list;) #IMPLIED
+  color-downsampling-above-dpi-default %dpi.model; #IMPLIED
+  color-downsampling-target-dpi-default %dpi.model; #IMPLIED
+  color-downsampling-minimum (%downsampling.list;) #IMPLIED
+  color-downsampling-above-dpi-minimum %dpi.model; #IMPLIED
+  color-downsampling-target-dpi-minimum %dpi.model; #IMPLIED
+  color-jpeg-quality %jpeg-quality.model; #IMPLIED
+  color-jpeg-quality-default %jpeg-quality.model; #IMPLIED
+  color-jpeg-quality-minimum %jpeg-quality.model; #IMPLIED
+  color-profile CDATA #IMPLIED
+  convert-colorspace (%ah.boolean;) #IMPLIED
+  decimal-part-digits CDATA #IMPLIED
+  decimal-part-digits-default CDATA #IMPLIED
+  decimal-part-digits-minimum CDATA #IMPLIED
+  default-output-intent CDATA #IMPLIED
+  embed-all-fonts (%ah.boolean;|base14) #IMPLIED
+  embed-font-encoding CDATA #IMPLIED
+  embed-std-output-intent (%ah.boolean;) #IMPLIED
+  embed-subset-font-percentage CDATA #IMPLIED
+  encrypt-metadata (%ah.boolean;) #IMPLIED
+  encryption-level (40rc4|40RC4|128rc4|128RC4|128aes|128AES|256aes
+                    |256AES) #IMPLIED
+  EPS-processor (none|distiller|ghostscript) #IMPLIED
+  error-on-embed-fault (%ah.boolean;) #IMPLIED
+  error-on-missing-glyph (%ah.boolean;) #IMPLIED
+  error-on-pdfx-fault (%ah.boolean;) #IMPLIED
+  error-on-tagged-pdf-fault (%ah.boolean;) #IMPLIED
+  ghostscript CDATA #IMPLIED
+  gif-pass-through (%ah.boolean;) #IMPLIED
+  grayscale-compression (%compression.list;) #IMPLIED
+  grayscale-compression-default (%compression.list;) #IMPLIED
+  grayscale-compression-minimum (%compression.list;) #IMPLIED
+  grayscale-downsampling (%downsampling.list;) #IMPLIED
+  grayscale-downsampling-above-dpi %dpi.model; #IMPLIED
+  grayscale-downsampling-target-dpi %dpi.model; #IMPLIED
+  grayscale-downsampling-default (%downsampling.list;) #IMPLIED
+  grayscale-downsampling-above-dpi-default %dpi.model; #IMPLIED
+  grayscale-downsampling-target-dpi-default %dpi.model; #IMPLIED
+  grayscale-downsampling-minimum (%downsampling.list;) #IMPLIED
+  grayscale-downsampling-above-dpi-minimum %dpi.model; #IMPLIED
+  grayscale-downsampling-target-dpi-minimum %dpi.model; #IMPLIED
+  grayscale-jpeg-quality %jpeg-quality.model; #IMPLIED
+  grayscale-jpeg-quality-default %jpeg-quality.model; #IMPLIED
+  grayscale-jpeg-quality-minimum %jpeg-quality.model; #IMPLIED
+  gs-add-options CDATA #IMPLIED
+  image-color-profile (%ah.boolean;) #IMPLIED
+  image-compression NMTOKEN #IMPLIED
+  image-downsampling NMTOKEN #IMPLIED
+  image-downsampling-above-dpi %dpi.model; #IMPLIED
+  image-downsampling-target-dpi %dpi.model; #IMPLIED
+  import-3D-annotation (%ah.boolean;) #IMPLIED
+  import-3Dannotation (%ah.boolean;) #IMPLIED
+  import-annotation-types CDATA #IMPLIED
+  import-tagged-pdf (%ah.boolean;) #IMPLIED
+  import-textmarkup-annotation (%ah.boolean;) #IMPLIED
+  joboptions CDATA #IMPLIED
+  jpeg-quality CDATA #IMPLIED
+  linearized (%ah.boolean;) #IMPLIED
+  monochrome-compression (%monochrome.compression.list;) #IMPLIED
+  monochrome-compression-default (%monochrome.compression.list;) #IMPLIED
+  monochrome-compression-minimum (%monochrome.compression.list;) #IMPLIED
+  monochrome-downsampling (%downsampling.list;) #IMPLIED
+  monochrome-downsampling-above-dpi %dpi.model; #IMPLIED
+  monochrome-downsampling-target-dpi %dpi.model; #IMPLIED
+  monochrome-downsampling-default (%downsampling.list;) #IMPLIED
+  monochrome-downsampling-above-dpi-default %dpi.model; #IMPLIED
+  monochrome-downsampling-target-dpi-default %dpi.model; #IMPLIED
+  monochrome-downsampling-minimum (%downsampling.list;) #IMPLIED
+  monochrome-downsampling-above-dpi-minimum %dpi.model; #IMPLIED
+  monochrome-downsampling-target-dpi-minimum %dpi.model; #IMPLIED
+  multimedia-treatment (embed|absolute-link|relative-link|richmedia
+                        |richmedia-windowed) #IMPLIED
+  new-tagging-mode (%ah.boolean;) #IMPLIED
+  no-accessibility (%ah.boolean;) #IMPLIED
+  no-adding-or-changing-comments (%ah.boolean;) #IMPLIED
+  no-assemble-doc (%ah.boolean;) #IMPLIED
+  no-changing (%ah.boolean;) #IMPLIED
+  no-content-copying (%ah.boolean;) #IMPLIED
+  no-fill-form (%ah.boolean;) #IMPLIED
+  object-compression (%ah.boolean;) #IMPLIED
+  object-compression-default (%ah.boolean;) #IMPLIED
+  object-compression-minimum (%ah.boolean;) #IMPLIED
+  overprint NMTOKEN #IMPLIED
+  page-labels (%ah.boolean;) #IMPLIED
+  pass-through %pass-through.model; #IMPLIED
+  pass-through-default %pass-through.model; #IMPLIED
+  pass-through-minimum %pass-through.model; #IMPLIED
+  pdf-version %pdf-version.list; #IMPLIED
+  printing-allowed NMTOKEN #IMPLIED
+  rasterize-resolution CDATA #IMPLIED
+  real-value-limit (0|1|2|3) #IMPLIED
+  real-value-limit-modify (%ah.boolean;) #IMPLIED
+  reverse-page (%ah.boolean;) #IMPLIED
+  rgb-conversion NMTOKEN #IMPLIED
+  signature (%ah.boolean;) #IMPLIED
+  signature-name NMTOKEN #IMPLIED
+  tagged-pdf (%ah.boolean;) #IMPLIED
+  text-and-lineart-compression (%ah.boolean;) #IMPLIED
+  text-and-lineart-compression-default (%ah.boolean;) #IMPLIED
+  text-and-lineart-compression-minimum (%ah.boolean;) #IMPLIED
+  transparency (%ah.boolean;) #IMPLIED
+  transparency-color-space NMTOKEN #IMPLIED
+  use-launch-for-local-file (%ah.boolean;) #IMPLIED
+  user-password CDATA #IMPLIED>
+
+<!ELEMENT embed-font EMPTY>
+<!ATTLIST embed-font
+  font CDATA #REQUIRED>
+
+<!ELEMENT tag-role-map (tag-element)+>
+
+<!ELEMENT tag-element EMPTY>
+<!ATTLIST tag-element
+  tag-base-name CDATA #REQUIRED
+  tag-derived-name CDATA #REQUIRED>
+
+<!ELEMENT cgm-settings EMPTY>
+<!ATTLIST cgm-settings
+  output-text (%ah.boolean;) #IMPLIED>
+
+<!ELEMENT ps-settings EMPTY>
+<!ATTLIST ps-settings
+  noembed-font (%ah.boolean;) #REQUIRED
+  transparency (%ah.boolean;) #REQUIRED>
+
+<!ELEMENT inx-settings EMPTY>
+<!ATTLIST inx-settings
+  block-newline (%ah.boolean;) #IMPLIED
+  output-mode NMTOKEN #REQUIRED>
+
+<!ELEMENT mathml-settings (variant-font
+                           |(math,mfenced,mfrac,mi,mo,mroot,mscript,
+                             mstyle,mtable,munderover))?>
+
+<!ELEMENT variant-font EMPTY>
+<!ATTLIST variant-font
+  fontfamily CDATA #REQUIRED
+  mathvariant NMTOKEN #REQUIRED>
+
+<!ELEMENT math EMPTY>
+<!ATTLIST math
+  axis-shift CDATA #REQUIRED
+  big CDATA #REQUIRED
+  normal CDATA #REQUIRED
+  small CDATA #REQUIRED>
+
+<!ELEMENT mfenced EMPTY>
+<!ATTLIST mfenced
+  center-shift CDATA #REQUIRED>
+
+<!ELEMENT mfrac EMPTY>
+<!ATTLIST mfrac
+  bar-lspace CDATA #REQUIRED
+  bar-padding CDATA #REQUIRED
+  bar-rspace CDATA #REQUIRED
+  bar-width CDATA #REQUIRED
+  denominator-space CDATA #REQUIRED
+  italic-lspace CDATA #IMPLIED
+  italic-rspace CDATA #IMPLIED
+  medium CDATA #REQUIRED
+  neumerator-space CDATA #IMPLIED
+  numerator-space CDATA #IMPLIED
+  thick CDATA #REQUIRED
+  thin CDATA #REQUIRED>
+
+<!ELEMENT mi EMPTY>
+<!ATTLIST mi
+  italic-lspace CDATA #REQUIRED
+  italic-rspace CDATA #REQUIRED>
+
+<!ELEMENT mo EMPTY>
+<!ATTLIST mo
+  adjust-largeop-space CDATA #IMPLIED
+  default-space CDATA #IMPLIED
+  integral-bottom-width CDATA #IMPLIED
+  integral-italic (%ah.boolean;) #IMPLIED
+  integral-largeop CDATA #IMPLIED
+  integral-largeop-bottom-width CDATA #IMPLIED
+  integral-largeop-subscript-shift CDATA #IMPLIED
+  integral-largeop-superscript-shift CDATA #IMPLIED
+  integral-largeop-top-width CDATA #IMPLIED
+  integral-subscript-shift CDATA #IMPLIED
+  integral-superscript-shift CDATA #IMPLIED
+  integral-top-width CDATA #IMPLIED
+  largeop CDATA #REQUIRED
+  largeop-integral CDATA #IMPLIED
+  largeop-subscript-shift CDATA #IMPLIED
+  largeop-superscript-shift CDATA #IMPLIED
+  paren-bottom NMTOKEN #IMPLIED
+  paren-top NMTOKEN #IMPLIED
+  paren-width-max CDATA #IMPLIED
+  paren-width-min CDATA #IMPLIED
+  paren-width-scale CDATA #IMPLIED
+  paren-width-step (%ah.boolean;) #IMPLIED
+  subscript-shift CDATA #IMPLIED
+  superscript-shift CDATA #IMPLIED>
+
+<!ELEMENT mroot EMPTY>
+<!ATTLIST mroot
+  index-rspace CDATA #REQUIRED
+  index-shift CDATA #REQUIRED
+  padding-bottom CDATA #REQUIRED
+  padding-left CDATA #REQUIRED
+  padding-right CDATA #REQUIRED
+  padding-top CDATA #REQUIRED
+  root-pos1.x CDATA #REQUIRED
+  root-pos1.y CDATA #REQUIRED
+  root-pos2.x CDATA #REQUIRED
+  root-pos2.y CDATA #REQUIRED
+  root-pos3.x CDATA #REQUIRED
+  root-pos3.y CDATA #REQUIRED
+  root-pos4.x CDATA #REQUIRED
+  root-pos4.y CDATA #REQUIRED
+  root-width1 CDATA #REQUIRED
+  root-width2 CDATA #REQUIRED
+  root-width3 CDATA #REQUIRED
+  root-width4 CDATA #REQUIRED>
+
+<!ELEMENT mscript EMPTY>
+<!ATTLIST mscript
+  presubscript-italic-shift CDATA #REQUIRED
+  presuperscript-italic-shift CDATA #REQUIRED
+  script-lspace CDATA #REQUIRED
+  script-lspace2 CDATA #REQUIRED
+  script-rspace CDATA #REQUIRED
+  script-rspace2 CDATA #REQUIRED
+  subscript-italic-shift CDATA #REQUIRED
+  subscript-shift CDATA #REQUIRED
+  superscript-italic-shift CDATA #REQUIRED
+  superscript-shift CDATA #REQUIRED>
+
+<!ELEMENT mstyle EMPTY>
+<!ATTLIST mstyle
+  background NMTOKEN #REQUIRED
+  displaystyle (%ah.boolean;) #REQUIRED
+  mediummathspace CDATA #REQUIRED
+  scriptlevel CDATA #REQUIRED
+  scriptminsize NMTOKEN #REQUIRED
+  scriptsizemultiplier CDATA #REQUIRED
+  thickmathspace CDATA #REQUIRED
+  thinmathspace CDATA #REQUIRED
+  verythickmathspace CDATA #REQUIRED
+  verythinmathspace CDATA #REQUIRED
+  veryverythickmathspace CDATA #REQUIRED
+  veryverythinmathspace CDATA #REQUIRED>
+
+<!ELEMENT mtable EMPTY>
+<!ATTLIST mtable
+  border-width CDATA #REQUIRED>
+
+<!ATTLIST mathml-settings
+  double_struck NMTOKEN #IMPLIED
+  error-display NMTOKEN #IMPLIED
+  fraktur NMTOKEN #IMPLIED
+  mode NMTOKEN #IMPLIED
+  monospace NMTOKEN #IMPLIED
+  opspace-multiplier CDATA #IMPLIED
+  sans-serif NMTOKEN #IMPLIED
+  script NMTOKEN #IMPLIED
+  script-maxnest CDATA #IMPLIED
+  scriptminsize NMTOKEN #IMPLIED
+  scriptsizemultiplier CDATA #IMPLIED>
+
+<!ENTITY % munderover.model "">
+
+<!ENTITY % munderover.attlist "
+  bar-padding CDATA #REQUIRED
+  bar-width CDATA #REQUIRED
+  integral-largeop-overscript-space CDATA #IMPLIED
+  integral-largeop-underscript-space CDATA #IMPLIED
+  integral-overscript-space CDATA #IMPLIED
+  integral-underscript-space CDATA #IMPLIED
+  limit-size CDATA #REQUIRED
+  overaccent-shift CDATA #REQUIRED
+  overbar-space CDATA #REQUIRED
+  overscript-space CDATA #REQUIRED
+  tendsto-arror-variable (%ah.boolean;) #IMPLIED
+  underaccent-shift CDATA #REQUIRED
+  underbar-space CDATA #REQUIRED
+  underscript-space CDATA #REQUIRED">
+
+<!ELEMENT munderover EMPTY>
+<!ATTLIST munderover
+  %munderover.attlist;
+  %munderover.model;>
+
+<!ELEMENT mif-settings EMPTY>
+<!ATTLIST mif-settings
+  char-units NMTOKEN #REQUIRED
+  image-processing NMTOKEN #IMPLIED
+  output-mode NMTOKEN #REQUIRED
+  units NMTOKEN #REQUIRED>
+
+<!ELEMENT rxe-settings EMPTY>
+
+<!ENTITY % svg-settings.model "">
+
+<!ENTITY % svg-settings.attlist "
+  base-uri CDATA #IMPLIED
+  copy-image-path CDATA #REQUIRED
+  copy-image-prefix CDATA #REQUIRED
+  embed-all-fonts (%ah.boolean;) #REQUIRED
+  encoding CDATA #IMPLIED
+  error-on-embed-fault (%ah.boolean;) #REQUIRED
+  format CDATA #REQUIRED
+  gzip-compression (%ah.boolean;) #REQUIRED
+  image-conversion NMTOKEN #REQUIRED
+  image-downsampling-dpi %dpi.model; #IMPLIED
+  image-downsampling-method CDATA #IMPLIED
+  image-processing NMTOKEN #REQUIRED
+  jpeg-quality CDATA #REQUIRED
+  rasterize-resolution CDATA #REQUIRED
+  rename-copy-image (%ah.boolean;) #REQUIRED
+  single-file-max-height CDATA #IMPLIED
+  single-file-max-pages CDATA #IMPLIED
+  single-page-number (%ah.boolean;) #IMPLIED
+  singlefile (%ah.boolean;) #REQUIRED
+  svg-version CDATA #REQUIRED">
+
+<!ELEMENT svg-settings EMPTY>
+<!ATTLIST svg-settings
+  %svg-settings.attlist;
+  %svg-settings.model;>
+
+<!ELEMENT text-settings EMPTY>
+
+<!ENTITY % xslt-settings.model "param*">
+
+<!ELEMENT xslt-settings (%xslt-settings.model;)>
+
+<!ATTLIST xslt-settings
+  command CDATA #IMPLIED
+  msxml (%ah.boolean;) #REQUIRED
+  param-option CDATA #IMPLIED>
+
+<!ELEMENT param EMPTY>
+<!ATTLIST param
+  name NMTOKEN #REQUIRED
+  value CDATA #REQUIRED>
