@@ -10,7 +10,7 @@
         <xt:author>Antenna House, Inc.</xt:author>
         <xt:name>ahfsettings</xt:name>
         <xt:description xmlns="http://www.w3.org/1999/xhtml">Edit AH Formatter Option Settings File.</xt:description>
-        <xt:license><![CDATA[   Copyright 1999-2019 Antenna House, Inc.
+        <xt:license><![CDATA[   Copyright 1999-2020 Antenna House, Inc.
 ]]></xt:license>
     </xt:extension>
 </xt:extensions>

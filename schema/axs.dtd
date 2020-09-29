@@ -3,7 +3,7 @@
 <!--
 Schema for Antenna House Option Setting File.
 
-Copyright 2015-2019 Antenna House, Inc.
+Copyright 2015-2020 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ limitations under the License.
 <!-- default namespace = "" -->
 
 <!ENTITY % ah.boolean "false|true">
+
+<!ENTITY % bpil-penalty-hyphenation.model "CDATA">
 
 <!ENTITY % compression.list "auto|zlib|jpeg|jpeg2000|keeplzw|auto2k
                              |keeplzw2k">
@@ -45,7 +47,8 @@ limitations under the License.
                                    mathml-settings?,rxe-settings?,
                                    svg-settings?,inx-settings?,
                                    mif-settings?,cgm-settings?,
-                                   text-settings?,xslt-settings?">
+                                   text-settings?,xslt-settings?,
+                                   analyzer-settings?">
 
 <!-- start = formatter-config -->
 
@@ -64,6 +67,10 @@ limitations under the License.
   border-medium-width NMTOKEN #IMPLIED
   border-thick-width NMTOKEN #IMPLIED
   border-thin-width NMTOKEN #IMPLIED
+  bpil CDATA #IMPLIED
+  bpil-limit-chars CDATA #IMPLIED
+  bpil-minimum-line-width CDATA #IMPLIED
+  bpil-penalty-hyphenation %bpil-penalty-hyphenation.model; #IMPLIED
   css-media-type NMTOKEN #IMPLIED
   default-CJK NMTOKEN #IMPLIED
   default-color CDATA #IMPLIED
@@ -79,6 +86,7 @@ limitations under the License.
   default-page-margin-top CDATA #IMPLIED
   default-page-width NMTOKEN #IMPLIED
   descendant-or-self-files (%ah.boolean;) #IMPLIED
+  display-alttext (%ah.boolean;) #IMPLIED
   external-entity (%ah.boolean;) #IMPLIED
   family-name-syntax (auto|loose|strict) #IMPLIED
   fixed-width-space-treatment (%ah.boolean;) #IMPLIED
@@ -90,6 +98,7 @@ limitations under the License.
   intrusion-displace-mode CDATA #IMPLIED
   img-alt (%ah.boolean;) #IMPLIED
   issue-scale-to-fit (%ah.boolean;) #IMPLIED
+  jamo-ligature (%ah.boolean;) #IMPLIED
   justify-leader (%ah.boolean;) #IMPLIED
   justify-rowspan-height (%ah.boolean;) #IMPLIED
   keep-footnote-anchor (%ah.boolean;) #IMPLIED
@@ -280,7 +289,9 @@ limitations under the License.
   object-compression-default (%ah.boolean;) #IMPLIED
   object-compression-minimum (%ah.boolean;) #IMPLIED
   overprint NMTOKEN #IMPLIED
+  owner-password CDATA #IMPLIED
   page-labels (%ah.boolean;) #IMPLIED
+  pages-max-kids CDATA #IMPLIED
   pass-through %pass-through.model; #IMPLIED
   pass-through-default %pass-through.model; #IMPLIED
   pass-through-minimum %pass-through.model; #IMPLIED
@@ -300,7 +311,8 @@ limitations under the License.
   transparency (%ah.boolean;) #IMPLIED
   transparency-color-space NMTOKEN #IMPLIED
   use-launch-for-local-file (%ah.boolean;) #IMPLIED
-  user-password CDATA #IMPLIED>
+  user-password CDATA #IMPLIED
+  xmp-padding CDATA #IMPLIED>
 
 <!ELEMENT embed-font EMPTY>
 <!ATTLIST embed-font
@@ -536,3 +548,15 @@ limitations under the License.
 <!ATTLIST param
   name NMTOKEN #REQUIRED
   value CDATA #REQUIRED>
+
+<!ELEMENT analyzer-settings EMPTY>
+<!ATTLIST analyzer-settings
+  hyphen-limit CDATA #IMPLIED
+  line-end-limit CDATA #IMPLIED
+  line-end-repeat-limit CDATA #IMPLIED
+  line-start-limit CDATA #IMPLIED
+  line-start-repeat-limit CDATA #IMPLIED
+  page-widow-limit-em CDATA #IMPLIED
+  page-widow-limit-percent CDATA #IMPLIED
+  paragraph-widow-limit-em CDATA #IMPLIED
+  paragraph-widow-limit-percent CDATA #IMPLIED>

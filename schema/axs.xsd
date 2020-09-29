@@ -3,7 +3,7 @@
   <!--
     Schema for Antenna House Option Setting File.
     
-    Copyright 2015-2019 Antenna House, Inc.
+    Copyright 2015-2020 Antenna House, Inc.
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -22,6 +22,12 @@
     <xs:restriction base="xs:token">
       <xs:enumeration value="false"/>
       <xs:enumeration value="true"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="bpil-penalty-hyphenation.model">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="1000"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="compression.list">
@@ -147,11 +153,12 @@
       <xs:enumeration value="Latn"/>
       <xs:enumeration value="Grek"/>
       <xs:enumeration value="Cyrl"/>
+      <xs:enumeration value="Ethi"/>
       <xs:enumeration value="Arab"/>
+      <xs:enumeration value="Syrc"/>
       <xs:enumeration value="Hebr"/>
       <xs:enumeration value="Deva"/>
       <xs:enumeration value="Beng"/>
-      <xs:enumeration value="Ethi"/>
       <xs:enumeration value="Guru"/>
       <xs:enumeration value="Gujr"/>
       <xs:enumeration value="Orya"/>
@@ -160,16 +167,17 @@
       <xs:enumeration value="Knda"/>
       <xs:enumeration value="Mlym"/>
       <xs:enumeration value="Sinh"/>
-      <xs:enumeration value="Syrc"/>
       <xs:enumeration value="Thai"/>
       <xs:enumeration value="Khmr"/>
       <xs:enumeration value="Laoo"/>
-      <xs:enumeration value="Myanmar"/>
+      <xs:enumeration value="Mymr"/>
+      <xs:enumeration value="Kana"/>
+      <xs:enumeration value="Hira"/>
       <xs:enumeration value="Hang"/>
+      <xs:enumeration value="Hani"/>
       <xs:enumeration value="Hans"/>
       <xs:enumeration value="Hant"/>
       <xs:enumeration value="Jpan"/>
-      <xs:enumeration value="Hrkt"/>
       <xs:enumeration value="."/>
       <xs:enumeration value=""/>
     </xs:restriction>
@@ -190,6 +198,7 @@
       <xs:element minOccurs="0" ref="cgm-settings"/>
       <xs:element minOccurs="0" ref="text-settings"/>
       <xs:element minOccurs="0" ref="xslt-settings"/>
+      <xs:element minOccurs="0" ref="analyzer-settings"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="formatter-settings">
@@ -227,6 +236,26 @@
       <xs:attribute name="border-medium-width" type="xs:NMTOKEN"/>
       <xs:attribute name="border-thick-width" type="xs:NMTOKEN"/>
       <xs:attribute name="border-thin-width" type="xs:NMTOKEN"/>
+      <xs:attribute name="bpil">
+        <xs:annotation>
+          <xs:documentation>Languages or scripts to which to apply Knuth-Plass Breaking Paragraphs into Lines [BPIL]</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="bpil-limit-chars" type="xs:positiveInteger">
+        <xs:annotation>
+          <xs:documentation>Maximum number of characters to which [BPIL] applies: &lt;integer&gt;</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="bpil-minimum-line-width">
+        <xs:annotation>
+          <xs:documentation>Minimum line width (in em) to which to apply [BPIL]: &lt;number&gt;</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="bpil-penalty-hyphenation" type="bpil-penalty-hyphenation.model">
+        <xs:annotation>
+          <xs:documentation>Frequency of hyphenation in [BPIL] with a value of 0 to 1000</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
       <xs:attribute name="css-media-type" type="xs:NCName"/>
       <xs:attribute name="default-CJK" type="xs:NCName"/>
       <xs:attribute name="default-color"/>
@@ -242,6 +271,7 @@
       <xs:attribute name="default-page-margin-top"/>
       <xs:attribute name="default-page-width" type="xs:NMTOKEN"/>
       <xs:attribute name="descendant-or-self-files" type="ah.boolean"/>
+      <xs:attribute name="display-alttext" type="ah.boolean"/>
       <xs:attribute name="external-entity" type="ah.boolean"/>
       <xs:attribute name="family-name-syntax">
         <xs:annotation>
@@ -285,6 +315,11 @@
       <xs:attribute name="intrusion-displace-mode" type="xs:integer"/>
       <xs:attribute name="img-alt" type="ah.boolean"/>
       <xs:attribute name="issue-scale-to-fit" type="ah.boolean"/>
+      <xs:attribute name="jamo-ligature" type="ah.boolean">
+        <xs:annotation>
+          <xs:documentation>Whether to process the ligature of Hangul Jamo (U+1100 to U+11FF)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
       <xs:attribute name="justify-leader" type="ah.boolean"/>
       <xs:attribute name="justify-rowspan-height" type="ah.boolean"/>
       <xs:attribute name="keep-footnote-anchor" type="ah.boolean"/>
@@ -725,7 +760,17 @@
     <xs:attribute name="object-compression-default" type="ah.boolean"/>
     <xs:attribute name="object-compression-minimum" type="ah.boolean"/>
     <xs:attribute name="overprint" type="xs:NCName"/>
-    <xs:attribute name="page-labels" type="ah.boolean"/>
+    <xs:attribute name="owner-password"/>
+    <xs:attribute name="page-labels" type="ah.boolean">
+      <xs:annotation>
+        <xs:documentation>Whether to apply page labels to page numbers: true | false</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pages-max-kids" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>Maximum number of elements in the /Kids array of the PDF /Pages dictionary</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="pass-through" type="pass-through.model"/>
     <xs:attribute name="pass-through-default" type="pass-through.model"/>
     <xs:attribute name="pass-through-minimum" type="pass-through.model"/>
@@ -755,6 +800,11 @@
     <xs:attribute name="transparency-color-space" type="xs:NCName"/>
     <xs:attribute name="use-launch-for-local-file" type="ah.boolean"/>
     <xs:attribute name="user-password"/>
+    <xs:attribute name="xmp-padding" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>Padding size to assist XMP editing in place when embedding XMP</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:attributeGroup>
   <xs:complexType name="pdf-settings.model">
     <xs:sequence>
@@ -1044,6 +1094,19 @@
     <xs:complexType>
       <xs:attribute name="name" use="required" type="xs:NCName"/>
       <xs:attribute name="value" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="analyzer-settings">
+    <xs:complexType>
+      <xs:attribute name="hyphen-limit" type="xs:positiveInteger"/>
+      <xs:attribute name="line-end-limit" type="xs:positiveInteger"/>
+      <xs:attribute name="line-end-repeat-limit" type="xs:positiveInteger"/>
+      <xs:attribute name="line-start-limit" type="xs:positiveInteger"/>
+      <xs:attribute name="line-start-repeat-limit" type="xs:positiveInteger"/>
+      <xs:attribute name="page-widow-limit-em"/>
+      <xs:attribute name="page-widow-limit-percent"/>
+      <xs:attribute name="paragraph-widow-limit-em"/>
+      <xs:attribute name="paragraph-widow-limit-percent"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>
