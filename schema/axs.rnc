@@ -152,9 +152,13 @@ formatter-config.model =
 formatter-settings =
     element formatter-settings {
       attribute abbreviation-character-count { xsd:integer }?,
+      ## Whether to automatically break footnotes when axf:footnote-max-height=​"auto": true | false
       attribute auto-break-footnote { ah.boolean }?,
+      ## Formatter type when unclear if HTML or XHTML: html | xhtml
       attribute auto-formatter-type { 'html' | 'xhtml' }?,
-      attribute avoid-widow-words-CJK-punctuation { ah.boolean },
+      attribute avoid-orphan-hyphen { text }?,
+      ## Whether to count the last punctuation to be included in one character when axf:avoid-widow-word="true" is specified in CJK: true | false
+      attribute avoid-widow-words-CJK-punctuation { ah.boolean }?,
       ## Whether <axf:formatter-config> is allowed
       attribute axf-formatter-config { ah.boolean }?,
       ## Mode for handling baselines of mixed scripts: 4 = AH Formatter V4; 5 = AH Formatter V5; 6 = AH Formatter V6
@@ -338,6 +342,8 @@ pdf-settings.attlist =
          ## Whether JavaScript specified by openaction or axf:action-type is enabled: true | false
          attribute allow-javascript { ah.boolean }?,
          attribute certificate-name { xsd:NCName }?,
+         ## Whether to check the parent-child relationship between tags: true | false
+         attribute check-tag-relationship { ah.boolean }?,
          ## Compression method for color image transformed into bitmap in PDF file: auto | zlib | jpeg | jpeg2000 | keeplzw | auto2k | keeplzw2k
          attribute color-compression { compression.list }?,
          ## Compression method for color image transformed into bitmap in PDF file: auto | zlib | jpeg | jpeg2000 | keeplzw | auto2k | keeplzw2k

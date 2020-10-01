@@ -232,15 +232,22 @@
       </optional>
       <optional>
         <attribute name="auto-formatter-type">
+          <a:documentation>Formatter type when unclear if HTML or XHTML: html | xhtml</a:documentation>
           <choice>
             <value>html</value>
             <value>xhtml</value>
           </choice>
         </attribute>
       </optional>
-      <attribute name="avoid-widow-words-CJK-punctuation">
-        <ref name="ah.boolean"/>
-      </attribute>
+      <optional>
+        <attribute name="avoid-orphan-hyphen"/>
+      </optional>
+      <optional>
+        <attribute name="avoid-widow-words-CJK-punctuation">
+          <a:documentation>Whether to count the last punctuation to be included in one character when axf:avoid-widow-word="true" is specified in CJK: true | false</a:documentation>
+          <ref name="ah.boolean"/>
+        </attribute>
+      </optional>
       <optional>
         <attribute name="axf-formatter-config">
           <a:documentation>Whether &lt;axf:formatter-config&gt; is allowed</a:documentation>
@@ -857,6 +864,12 @@
     <optional>
       <attribute name="certificate-name">
         <data type="NCName"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="check-tag-relationship">
+        <a:documentation>Whether to check the parent-child relationship between tags: true | false</a:documentation>
+        <ref name="ah.boolean"/>
       </attribute>
     </optional>
     <optional>

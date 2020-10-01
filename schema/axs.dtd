@@ -59,7 +59,8 @@ limitations under the License.
   abbreviation-character-count CDATA #IMPLIED
   auto-break-footnote (%ah.boolean;) #IMPLIED
   auto-formatter-type (html|xhtml) #IMPLIED
-  avoid-widow-words-CJK-punctuation (%ah.boolean;) #REQUIRED
+  avoid-orphan-hyphen CDATA #IMPLIED
+  avoid-widow-words-CJK-punctuation (%ah.boolean;) #IMPLIED
   axf-formatter-config (%ah.boolean;) #IMPLIED
   baseline-mode (4|5|6) #IMPLIED
   bidi-override-mode CDATA #IMPLIED
@@ -199,6 +200,7 @@ limitations under the License.
 <!ATTLIST pdf-settings
   allow-javascript (%ah.boolean;) #IMPLIED
   certificate-name NMTOKEN #IMPLIED
+  check-tag-relationship (%ah.boolean;) #IMPLIED
   color-compression (%compression.list;) #IMPLIED
   color-compression-default (%compression.list;) #IMPLIED
   color-compression-minimum (%compression.list;) #IMPLIED

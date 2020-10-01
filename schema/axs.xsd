@@ -206,6 +206,9 @@
       <xs:attribute name="abbreviation-character-count" type="xs:integer"/>
       <xs:attribute name="auto-break-footnote" type="ah.boolean"/>
       <xs:attribute name="auto-formatter-type">
+        <xs:annotation>
+          <xs:documentation>Formatter type when unclear if HTML or XHTML: html | xhtml</xs:documentation>
+        </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:token">
             <xs:enumeration value="html"/>
@@ -213,7 +216,12 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="avoid-widow-words-CJK-punctuation" use="required" type="ah.boolean"/>
+      <xs:attribute name="avoid-orphan-hyphen"/>
+      <xs:attribute name="avoid-widow-words-CJK-punctuation" type="ah.boolean">
+        <xs:annotation>
+          <xs:documentation>Whether to count the last punctuation to be included in one character when axf:avoid-widow-word="true" is specified in CJK: true | false</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
       <xs:attribute name="axf-formatter-config" type="ah.boolean">
         <xs:annotation>
           <xs:documentation>Whether &lt;axf:formatter-config&gt; is allowed</xs:documentation>
@@ -565,6 +573,11 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="certificate-name" type="xs:NCName"/>
+    <xs:attribute name="check-tag-relationship" type="ah.boolean">
+      <xs:annotation>
+        <xs:documentation>Whether to check the parent-child relationship between tags: true | false</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="color-compression" type="compression.list">
       <xs:annotation>
         <xs:documentation>Compression method for color image transformed into bitmap in PDF file: auto | zlib | jpeg | jpeg2000 | keeplzw | auto2k | keeplzw2k</xs:documentation>
