@@ -1,6 +1,6 @@
 # Schema for Antenna House Option Setting File.
 #
-# Copyright 2015-2020 Antenna House, Inc.
+# Copyright 2015-2021 Antenna House, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ pdf-version.list =
     | 'PDF1.5'
     | 'PDF1.6'
     | 'PDF1.7'
+    | 'PDF2.0'
     | 'PDF/X-1a:2001'
     | 'PDF/X-3:2002'
     | 'PDF/X-1a:2003'
