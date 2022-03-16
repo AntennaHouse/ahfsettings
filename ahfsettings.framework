@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serialized version="18.0" xml:space="preserve">
-	<map>
+<serialized xml:space="preserve">
+	<serializableOrderedMap>
 		<entry>
 			<String>document.types</String>
 			<documentTypeDescriptor-array>
 				<documentTypeDescriptor>
+					<field name="webResources">
+						<null/>
+					</field>
 					<field name="extensionPatch">
 						<null/>
 					</field>
@@ -141,13 +144,15 @@
 						</authorExtension>
 					</field>
 					<field name="templatesLocations">
-						<String-array/>
+						<String-array>
+							<String>${frameworkDir}/template</String>
+						</String-array>
 					</field>
 					<field name="xmlCatalogs">
 						<String-array/>
 					</field>
 					<field name="description">
-						<String>See </String>
+						<String>See https://www.antenna.co.jp/AHF/help/en/ahf-optset.html</String>
 					</field>
 					<field name="doctypeRules">
 						<documentTypeRule-array>
@@ -259,8 +264,11 @@
 					<field name="customAttributeValueEditor">
 						<null/>
 					</field>
+					<field name="textModeExternalObjectInsertionHandler">
+						<null/>
+					</field>
 				</documentTypeDescriptor>
 			</documentTypeDescriptor-array>
 		</entry>
-	</map>
+	</serializableOrderedMap>
 </serialized>
