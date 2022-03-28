@@ -8,6 +8,8 @@ Schema for AH Formatter 'Option Settings File'.
 
 **ahfsettings** version numbers correspond to the AH Formatter version current at the time of the release.
 
+Each release includes schema files in Relax NG, Relax NG compact syntax, W3C XML Schema, and DTD formats.
+
 ## Disclaimer
 
 **ahfsettings** is a work in progress.
@@ -58,6 +60,8 @@ If you don't have permission to modify the Oxygen installation – for example, 
 ### oXygen XML Editor
 
 When you open an Option Setting File – where the document element is `formatter-config` in no namespace – oXygen will automatically validate the document against the Relax NG schema.
+
+The Oxygen framwork provides a template Option Setting File. Unused elements may be deleted from your Option Setting File.
 
 ## License
 
@@ -130,7 +134,7 @@ oXygen はアドオンフレームワークをインストールした後、エ�
 2. 必要ならば、別のフレームワークスの場所として **ahfsettings** フォルダを追加します。
 3. oXygen を再起動します。
 
-##  **hyphenation-info**の使用
+##  **ahfsettings**の使用
 
 ### oXygen XML エディタ
 
