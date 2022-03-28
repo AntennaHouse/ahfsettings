@@ -138,20 +138,17 @@ formatter-config =
 }
 
 formatter-config.model =
-    formatter-settings?,
+    (formatter-settings?,
     font-settings?,
     pdf-settings?,
     ps-settings?,
-    mathml-settings?,
-    rxe-settings?,
     svg-settings?,
-    inx-settings?,
-    mif-settings?,
-    cgm-settings?,
     text-settings?,
+    mathml-settings?,
+    cgm-settings?,
     xslt-settings?,
-    analyzer-settings?
-    
+    analyzer-settings?)
+
 formatter-settings =
     element formatter-settings {
       attribute abbreviation-character-count { xsd:integer }?,
@@ -277,7 +274,7 @@ formatter-settings =
       attribute zwsp-mode { '5' | '6' }?,
       unbreakable-words*
     }
-    
+
 font-settings =
     ## Settings for fonts
     element font-settings {
@@ -530,15 +527,13 @@ cgm-settings =
 
 ps-settings =
     element ps-settings {
-      attribute noembed-font { ah.boolean },  
-      attribute transparency { ah.boolean }
+      ## Whether fonts are embedded in PostScript output: true | false
+      attribute noembed-font { ah.boolean }?,
+      ## Whether transparency is processed when outputting pdfmark: true | false
+      attribute transparency { ah.boolean }?,
+      ## Whether anexternal link is transformed into “Open the file” or “World Wide Web link”: true | false
+      attribute use-launch-for-local-file { ah.boolean }?
     }
-
-inx-settings =
-    element inx-settings {
-       attribute block-newline { ah.boolean }?,
-       attribute output-mode { xsd:NCName }
-     }
 
 mathml-settings =
     element mathml-settings {
@@ -608,17 +603,6 @@ munderover.attlist =
     attribute underbar-space { text },
     attribute underscript-space { text }
 
-mif-settings =
-    element mif-settings {
-         attribute char-units { xsd:NCName },
-         attribute image-processing { xsd:NCName }?,
-         attribute output-mode { xsd:NCName },
-         attribute units { xsd:NCName }
-       }
-
-rxe-settings =
-       element rxe-settings { empty }
-
 svg-settings =
      element svg-settings {
          svg-settings.attlist,
@@ -627,32 +611,32 @@ svg-settings =
 
 svg-settings.attlist =
          attribute base-uri { text }?,
-         attribute copy-image-path { text },
-         attribute copy-image-prefix { text },
-         attribute embed-all-fonts { ah.boolean },
+         attribute copy-image-path { text }?,
+         attribute copy-image-prefix { text }?,
+         attribute embed-all-fonts { ah.boolean }?,
          attribute encoding { text }?,
-         attribute error-on-embed-fault { ah.boolean },
-         attribute format { text },
-         attribute gzip-compression { ah.boolean },
-         attribute image-conversion { xsd:NCName },
+         attribute error-on-embed-fault { ah.boolean }?,
+         attribute format { text }?,
+         attribute gzip-compression { ah.boolean }?,
+         attribute image-conversion { xsd:NCName }?,
          attribute image-downsampling-dpi { dpi.model }?,
          attribute image-downsampling-method { xsd:integer }?,
-         attribute image-processing { xsd:NCName },
-         attribute jpeg-quality { xsd:integer },
-         attribute rasterize-resolution { xsd:integer },
-         attribute rename-copy-image { ah.boolean },
+         attribute image-processing { xsd:NCName }?,
+         attribute jpeg-quality { xsd:integer }?,
+         attribute rasterize-resolution { xsd:integer }?,
+         attribute rename-copy-image { ah.boolean }?,
          attribute single-file-max-height { text }?,
          attribute single-file-max-pages { xsd:integer }?,
          attribute single-page-number { ah.boolean }?,
-         attribute singlefile { ah.boolean },
-         attribute svg-version { xsd:decimal }
+         attribute singlefile { ah.boolean }?,
+         attribute svg-version { xsd:decimal }?
 
 svg-settings.model =
          empty
 
 text-settings =
      element text-settings { empty }
-     
+
 xslt-settings =
      element xslt-settings {
          xslt-settings.attlist,
@@ -660,9 +644,13 @@ xslt-settings =
     }
 
 xslt-settings.attlist =
-         attribute command { text }?,
-         attribute msxml { ah.boolean },
-         attribute param-option { text }?
+   ## Command line of external XSLT processor. Must include '%1', '%2', and '%3. Can include '%param'. On Windows, can be empty or '@MSXML'.
+   attribute command { text }?,
+   attribute msxml { ah.boolean }?,
+   ## Highest MSXML version to use: 6 | 5 | 4 | 3 | 0
+   attribute msxmlver { xsd:integer }?,
+   ## Template for passing XSLT parameters. Must include '%p' and '%v'.
+   attribute param-option { text }?
 
 xslt-settings.model =
          param*
