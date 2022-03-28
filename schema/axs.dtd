@@ -3,7 +3,7 @@
 <!--
 Schema for Antenna House Option Setting File.
 
-Copyright 2015-2020 Antenna House, Inc.
+Copyright 2015-2021 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -44,23 +44,20 @@ limitations under the License.
 
 <!ENTITY % formatter-config.model "formatter-settings?,font-settings?,
                                    pdf-settings?,ps-settings?,
-                                   mathml-settings?,rxe-settings?,
-                                   svg-settings?,inx-settings?,
-                                   mif-settings?,cgm-settings?,
-                                   text-settings?,xslt-settings?,
-                                   analyzer-settings?">
+                                   svg-settings?,text-settings?,
+                                   mathml-settings?,cgm-settings?,
+                                   xslt-settings?,analyzer-settings?">
 
 <!-- start = formatter-config -->
 
 <!ELEMENT formatter-config (%formatter-config.model;)>
 
-<!ELEMENT formatter-settings EMPTY>
+<!ELEMENT formatter-settings (unbreakable-words)*>
 <!ATTLIST formatter-settings
   abbreviation-character-count CDATA #IMPLIED
   auto-break-footnote (%ah.boolean;) #IMPLIED
   auto-formatter-type (html|xhtml) #IMPLIED
-  avoid-orphan-hyphen CDATA #IMPLIED
-  avoid-widow-words-CJK-punctuation (%ah.boolean;) #IMPLIED
+  avoid-widow-words-cjk-punctuation (%ah.boolean;) #IMPLIED
   axf-formatter-config (%ah.boolean;) #IMPLIED
   baseline-mode (4|5|6) #IMPLIED
   bidi-override-mode CDATA #IMPLIED
@@ -90,7 +87,7 @@ limitations under the License.
   display-alttext (%ah.boolean;) #IMPLIED
   external-entity (%ah.boolean;) #IMPLIED
   family-name-syntax (auto|loose|strict) #IMPLIED
-  fixed-width-space-treatment (%ah.boolean;) #IMPLIED
+  fixed-width-space-treatment (false|true|always) #IMPLIED
   hair-space-width CDATA #IMPLIED
   hyphenation-min (%ah.boolean;|without-exceptions) #IMPLIED
   HyphenationOption (%ah.boolean;) #IMPLIED
@@ -122,11 +119,13 @@ limitations under the License.
   punctuation-spacing CDATA #IMPLIED
   punctuation-trim (%ah.boolean;) #IMPLIED
   pxpi CDATA #IMPLIED
+  responsive-svg-size (reference|viewBox) #IMPLIED
   ruby-align CDATA #IMPLIED
-  small-caps-emulation-size CDATA #IMPLIED
   SeparatePrinterDuplexJob (%ah.boolean;) #IMPLIED
+  small-caps-emulation-always (%ah.boolean;) #IMPLIED
+  small-caps-emulation-size CDATA #IMPLIED
+  small-caps-emulation-x-height (%ah.boolean;) #IMPLIED
   splitting-blocks-space (%ah.boolean;) #IMPLIED
-  SVGViewer (%ah.boolean;) #IMPLIED
   tab-overlap-treatment CDATA #IMPLIED
   table-auto-layout-limit CDATA #IMPLIED
   table-is-reference-area (%ah.boolean;) #IMPLIED
@@ -193,12 +192,20 @@ limitations under the License.
   %font-alias.attlist;
   %font-alias.model;>
 
+<!ENTITY % unbreakable-words.model "#PCDATA">
+
+<!ELEMENT unbreakable-words (%unbreakable-words.model;)>
+
+<!ATTLIST unbreakable-words
+  src CDATA #IMPLIED>
+
 <!ENTITY % pdf-settings.model "embed-font*,(tag-role-map,embed-font*)?">
 
 <!ELEMENT pdf-settings (%pdf-settings.model;)>
 
 <!ATTLIST pdf-settings
   allow-javascript (%ah.boolean;) #IMPLIED
+  allow-nest-alt-text (%ah.boolean;) #IMPLIED
   certificate-name NMTOKEN #IMPLIED
   check-tag-relationship (%ah.boolean;) #IMPLIED
   color-compression (%compression.list;) #IMPLIED
@@ -235,6 +242,7 @@ limitations under the License.
   error-on-missing-glyph (%ah.boolean;) #IMPLIED
   error-on-pdfx-fault (%ah.boolean;) #IMPLIED
   error-on-tagged-pdf-fault (%ah.boolean;) #IMPLIED
+  fallback-alttext CDATA #IMPLIED
   ghostscript CDATA #IMPLIED
   gif-pass-through (%ah.boolean;) #IMPLIED
   grayscale-compression (%compression.list;) #IMPLIED
@@ -333,133 +341,39 @@ limitations under the License.
 
 <!ELEMENT ps-settings EMPTY>
 <!ATTLIST ps-settings
-  noembed-font (%ah.boolean;) #REQUIRED
-  transparency (%ah.boolean;) #REQUIRED>
+  noembed-font (%ah.boolean;) #IMPLIED
+  transparency (%ah.boolean;) #IMPLIED
+  use-launch-for-local-file (%ah.boolean;) #IMPLIED>
 
-<!ELEMENT inx-settings EMPTY>
-<!ATTLIST inx-settings
-  block-newline (%ah.boolean;) #IMPLIED
-  output-mode NMTOKEN #REQUIRED>
-
-<!ELEMENT mathml-settings (variant-font
-                           |(math,mfenced,mfrac,mi,mo,mroot,mscript,
-                             mstyle,mtable,munderover))?>
+<!ELEMENT mathml-settings (variant-font*,operator-dictionary?)>
 
 <!ELEMENT variant-font EMPTY>
 <!ATTLIST variant-font
+  center-shift CDATA #IMPLIED
   fontfamily CDATA #REQUIRED
-  mathvariant NMTOKEN #REQUIRED>
+  mathvariant CDATA #REQUIRED>
 
-<!ELEMENT math EMPTY>
-<!ATTLIST math
-  axis-shift CDATA #REQUIRED
-  big CDATA #REQUIRED
-  normal CDATA #REQUIRED
-  small CDATA #REQUIRED>
+<!ELEMENT operator-dictionary (entry)*>
+<!ATTLIST operator-dictionary
+  src CDATA #IMPLIED>
 
-<!ELEMENT mfenced EMPTY>
-<!ATTLIST mfenced
-  center-shift CDATA #REQUIRED>
-
-<!ELEMENT mfrac EMPTY>
-<!ATTLIST mfrac
-  bar-lspace CDATA #REQUIRED
-  bar-padding CDATA #REQUIRED
-  bar-rspace CDATA #REQUIRED
-  bar-width CDATA #REQUIRED
-  denominator-space CDATA #REQUIRED
-  italic-lspace CDATA #IMPLIED
-  italic-rspace CDATA #IMPLIED
-  medium CDATA #REQUIRED
-  neumerator-space CDATA #IMPLIED
-  numerator-space CDATA #IMPLIED
-  thick CDATA #REQUIRED
-  thin CDATA #REQUIRED>
-
-<!ELEMENT mi EMPTY>
-<!ATTLIST mi
-  italic-lspace CDATA #REQUIRED
-  italic-rspace CDATA #REQUIRED>
-
-<!ELEMENT mo EMPTY>
-<!ATTLIST mo
-  adjust-largeop-space CDATA #IMPLIED
-  default-space CDATA #IMPLIED
-  integral-bottom-width CDATA #IMPLIED
-  integral-italic (%ah.boolean;) #IMPLIED
-  integral-largeop CDATA #IMPLIED
-  integral-largeop-bottom-width CDATA #IMPLIED
-  integral-largeop-subscript-shift CDATA #IMPLIED
-  integral-largeop-superscript-shift CDATA #IMPLIED
-  integral-largeop-top-width CDATA #IMPLIED
-  integral-subscript-shift CDATA #IMPLIED
-  integral-superscript-shift CDATA #IMPLIED
-  integral-top-width CDATA #IMPLIED
-  largeop CDATA #REQUIRED
-  largeop-integral CDATA #IMPLIED
-  largeop-subscript-shift CDATA #IMPLIED
-  largeop-superscript-shift CDATA #IMPLIED
-  paren-bottom NMTOKEN #IMPLIED
-  paren-top NMTOKEN #IMPLIED
-  paren-width-max CDATA #IMPLIED
-  paren-width-min CDATA #IMPLIED
-  paren-width-scale CDATA #IMPLIED
-  paren-width-step (%ah.boolean;) #IMPLIED
-  subscript-shift CDATA #IMPLIED
-  superscript-shift CDATA #IMPLIED>
-
-<!ELEMENT mroot EMPTY>
-<!ATTLIST mroot
-  index-rspace CDATA #REQUIRED
-  index-shift CDATA #REQUIRED
-  padding-bottom CDATA #REQUIRED
-  padding-left CDATA #REQUIRED
-  padding-right CDATA #REQUIRED
-  padding-top CDATA #REQUIRED
-  root-pos1.x CDATA #REQUIRED
-  root-pos1.y CDATA #REQUIRED
-  root-pos2.x CDATA #REQUIRED
-  root-pos2.y CDATA #REQUIRED
-  root-pos3.x CDATA #REQUIRED
-  root-pos3.y CDATA #REQUIRED
-  root-pos4.x CDATA #REQUIRED
-  root-pos4.y CDATA #REQUIRED
-  root-width1 CDATA #REQUIRED
-  root-width2 CDATA #REQUIRED
-  root-width3 CDATA #REQUIRED
-  root-width4 CDATA #REQUIRED>
-
-<!ELEMENT mscript EMPTY>
-<!ATTLIST mscript
-  presubscript-italic-shift CDATA #REQUIRED
-  presuperscript-italic-shift CDATA #REQUIRED
-  script-lspace CDATA #REQUIRED
-  script-lspace2 CDATA #REQUIRED
-  script-rspace CDATA #REQUIRED
-  script-rspace2 CDATA #REQUIRED
-  subscript-italic-shift CDATA #REQUIRED
-  subscript-shift CDATA #REQUIRED
-  superscript-italic-shift CDATA #REQUIRED
-  superscript-shift CDATA #REQUIRED>
-
-<!ELEMENT mstyle EMPTY>
-<!ATTLIST mstyle
-  background NMTOKEN #REQUIRED
-  displaystyle (%ah.boolean;) #REQUIRED
-  mediummathspace CDATA #REQUIRED
-  scriptlevel CDATA #REQUIRED
-  scriptminsize NMTOKEN #REQUIRED
-  scriptsizemultiplier CDATA #REQUIRED
-  thickmathspace CDATA #REQUIRED
-  thinmathspace CDATA #REQUIRED
-  verythickmathspace CDATA #REQUIRED
-  verythinmathspace CDATA #REQUIRED
-  veryverythickmathspace CDATA #REQUIRED
-  veryverythinmathspace CDATA #REQUIRED>
-
-<!ELEMENT mtable EMPTY>
-<!ATTLIST mtable
-  border-width CDATA #REQUIRED>
+<!ELEMENT entry EMPTY>
+<!ATTLIST entry
+  operator CDATA #REQUIRED
+  form (prefix|infix|postfix) #REQUIRED
+  priority CDATA #IMPLIED
+  lspace (0|1|2|3|4|5|6|7) #IMPLIED
+  rspace (0|1|2|3|4|5|6|7) #IMPLIED
+  minsize CDATA #IMPLIED
+  maxsize CDATA #IMPLIED
+  accent (true|false) #IMPLIED
+  fence (true|false) #IMPLIED
+  separator (true|false) #IMPLIED
+  stretchy (true|false) #IMPLIED
+  symmetric (true|false) #IMPLIED
+  largeop (true|false) #IMPLIED
+  moveablelimits (true|false) #IMPLIED
+  linebreakstyle (before|after|duplicate) #IMPLIED>
 
 <!ATTLIST mathml-settings
   double_struck NMTOKEN #IMPLIED
@@ -497,38 +411,29 @@ limitations under the License.
   %munderover.attlist;
   %munderover.model;>
 
-<!ELEMENT mif-settings EMPTY>
-<!ATTLIST mif-settings
-  char-units NMTOKEN #REQUIRED
-  image-processing NMTOKEN #IMPLIED
-  output-mode NMTOKEN #REQUIRED
-  units NMTOKEN #REQUIRED>
-
-<!ELEMENT rxe-settings EMPTY>
-
 <!ENTITY % svg-settings.model "">
 
 <!ENTITY % svg-settings.attlist "
   base-uri CDATA #IMPLIED
-  copy-image-path CDATA #REQUIRED
-  copy-image-prefix CDATA #REQUIRED
-  embed-all-fonts (%ah.boolean;) #REQUIRED
+  copy-image-path CDATA #IMPLIED
+  copy-image-prefix CDATA #IMPLIED
+  embed-all-fonts (%ah.boolean;) #IMPLIED
   encoding CDATA #IMPLIED
-  error-on-embed-fault (%ah.boolean;) #REQUIRED
-  format CDATA #REQUIRED
-  gzip-compression (%ah.boolean;) #REQUIRED
-  image-conversion NMTOKEN #REQUIRED
+  error-on-embed-fault (%ah.boolean;) #IMPLIED
+  format CDATA #IMPLIED
+  gzip-compression (%ah.boolean;) #IMPLIED
+  image-conversion NMTOKEN #IMPLIED
   image-downsampling-dpi %dpi.model; #IMPLIED
   image-downsampling-method CDATA #IMPLIED
-  image-processing NMTOKEN #REQUIRED
-  jpeg-quality CDATA #REQUIRED
-  rasterize-resolution CDATA #REQUIRED
-  rename-copy-image (%ah.boolean;) #REQUIRED
+  image-processing NMTOKEN #IMPLIED
+  jpeg-quality CDATA #IMPLIED
+  rasterize-resolution CDATA #IMPLIED
+  rename-copy-image (%ah.boolean;) #IMPLIED
   single-file-max-height CDATA #IMPLIED
   single-file-max-pages CDATA #IMPLIED
   single-page-number (%ah.boolean;) #IMPLIED
-  singlefile (%ah.boolean;) #REQUIRED
-  svg-version CDATA #REQUIRED">
+  singlefile (%ah.boolean;) #IMPLIED
+  svg-version CDATA #IMPLIED">
 
 <!ELEMENT svg-settings EMPTY>
 <!ATTLIST svg-settings
@@ -543,7 +448,8 @@ limitations under the License.
 
 <!ATTLIST xslt-settings
   command CDATA #IMPLIED
-  msxml (%ah.boolean;) #REQUIRED
+  msxml (%ah.boolean;) #IMPLIED
+  msxmlver CDATA #IMPLIED
   param-option CDATA #IMPLIED>
 
 <!ELEMENT param EMPTY>
