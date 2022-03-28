@@ -1,2 +1,11 @@
 <formatter-config>
+    <formatter-settings />
+    <font-settings />
+    <pdf-settings />
+    <ps-settings />
+    <svg-settings />
+    <text-settings />
+    <mathml-settings />
+    <cgm-settings />
+    <analyzer-settings />
 </formatter-config>
