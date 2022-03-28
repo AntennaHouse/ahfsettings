@@ -52,6 +52,7 @@
 
 <tstamp>
   <format property="timestamp" pattern="yyyy-MM-dd"/>
+  <format property="year" pattern="yyyy"/>
 </tstamp>
 
 <!-- trang.jar location depends on if run from oXygen or on OS. -->
@@ -150,6 +151,12 @@
     <regexp pattern='releases/download/[^"]+' />
     <substitution
 	expression="releases/download/v${version}/${ant.project.name}-framework-${version}.zip"/>
+  </replaceregexp>
+  <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
+		 encoding="UTF-8">
+    <regexp pattern='Copyright ([0-9]+)-[0-9]+' />
+    <substitution
+	expression="Copyright \1-${year}"/>
   </replaceregexp>
 </target>
 
