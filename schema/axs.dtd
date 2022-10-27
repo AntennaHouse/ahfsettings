@@ -3,7 +3,7 @@
 <!--
 Schema for Antenna House Option Setting File.
 
-Copyright 2015-2021 Antenna House, Inc.
+Copyright 2015-2022 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,6 +42,11 @@ limitations under the License.
 
 <!ENTITY % script.list "CDATA">
 
+<!ENTITY % language-code-space.atts "
+  language CDATA #REQUIRED
+  code CDATA #IMPLIED
+  space CDATA #REQUIRED">
+
 <!ENTITY % formatter-config.model "formatter-settings?,font-settings?,
                                    pdf-settings?,ps-settings?,
                                    svg-settings?,text-settings?,
@@ -52,7 +57,17 @@ limitations under the License.
 
 <!ELEMENT formatter-config (%formatter-config.model;)>
 
-<!ELEMENT formatter-settings (unbreakable-words)*>
+<!ENTITY % formatter-settings.model "list-style-type*,quotationmark*,
+                                     script-chars*,
+                                     script-languge-in-CJK*,
+                                     space-end-punctuation*,
+                                     space-start-punctuation*,
+                                     space-between-digit-and-punctuation*,
+                                     usercss*,multimedia*,GS1-128*,
+                                     UAX50*,unbreakable-words*">
+
+<!ELEMENT formatter-settings (%formatter-settings.model;)>
+
 <!ATTLIST formatter-settings
   abbreviation-character-count CDATA #IMPLIED
   auto-break-footnote (%ah.boolean;) #IMPLIED
@@ -150,6 +165,71 @@ limitations under the License.
   viewport-length-units-mode CDATA #IMPLIED
   WindowsFontAPI CDATA #IMPLIED
   zwsp-mode (5|6) #IMPLIED>
+
+<!ELEMENT list-style-type EMPTY>
+<!ATTLIST list-style-type
+  box CDATA #IMPLIED
+  check CDATA #IMPLIED
+  circle CDATA #IMPLIED
+  diamond CDATA #IMPLIED
+  disc CDATA #IMPLIED
+  hyphen CDATA #IMPLIED
+  square CDATA #IMPLIED>
+
+<!ELEMENT quotationmark EMPTY>
+<!ATTLIST quotationmark
+  language CDATA #REQUIRED
+  code CDATA #REQUIRED
+  quotetype (QU|OP|CL) #REQUIRED>
+
+<!ELEMENT script-chars EMPTY>
+<!ATTLIST script-chars
+  script CDATA #IMPLIED
+  code CDATA #IMPLIED>
+
+<!ELEMENT script-languge-in-CJK EMPTY>
+<!ATTLIST script-languge-in-CJK
+  script CDATA #REQUIRED
+  language CDATA #IMPLIED>
+
+<!ELEMENT space-end-punctuation EMPTY>
+<!ATTLIST space-end-punctuation
+  %language-code-space.atts;>
+
+<!ELEMENT space-start-punctuation EMPTY>
+<!ATTLIST space-start-punctuation
+  %language-code-space.atts;>
+
+<!ELEMENT space-between-digit-and-punctuation EMPTY>
+<!ATTLIST space-between-digit-and-punctuation
+  %language-code-space.atts;>
+
+<!ELEMENT space-between-punctuation-and-digit EMPTY>
+<!ATTLIST space-between-punctuation-and-digit
+  %language-code-space.atts;>
+
+<!ELEMENT usercss (css)+>
+
+<!ELEMENT css EMPTY>
+<!ATTLIST css
+  path CDATA #REQUIRED>
+
+<!ELEMENT multimedia EMPTY>
+<!ATTLIST multimedia
+  audio CDATA #IMPLIED
+  video CDATA #IMPLIED
+  flash CDATA #IMPLIED>
+
+<!ELEMENT GS1-128 EMPTY>
+<!ATTLIST GS1-128
+  AI CDATA #REQUIRED
+  format CDATA #REQUIRED>
+
+<!ELEMENT UAX50 EMPTY>
+<!ATTLIST UAX50
+  code CDATA #REQUIRED
+  SVO (U|R|V) #IMPLIED
+  MVO (U|R|V) #IMPLIED>
 
 <!ELEMENT font-settings (script-font*,font-alias*)>
 <!ATTLIST font-settings
