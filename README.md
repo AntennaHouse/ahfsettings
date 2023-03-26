@@ -4,9 +4,9 @@
 ----
 # <a name="en"></a>ahfsettings
 
-Schema for AH Formatter 'Option Settings File'.
+Schema for Antenna House Formatter 'Option Settings File'.
 
-**ahfsettings** version numbers correspond to the AH Formatter version current at the time of the release.
+**ahfsettings** version numbers correspond to the Antenna House Formatter version current at the time of the release.
 
 Each release includes schema files in Relax NG, Relax NG compact syntax, W3C XML Schema, and DTD formats.
 
@@ -83,9 +83,9 @@ limitations under the License.
 
 # <a name="ja"></a>ahfsettings
 
-Relax NG schemaの AH Formatter オプション設定ファイル。
+Relax NG schemaの Antenna House Formatter オプション設定ファイル。
 
-**ahfsettings** 版の番号は、リリース時の AH Formatter 版に対応しています。
+**ahfsettings** 版の番号は、リリース時の Antenna House Formatter 版に対応しています。
 
 ## 免責事項
 
