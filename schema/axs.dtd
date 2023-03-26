@@ -3,7 +3,7 @@
 <!--
 Schema for Antenna House Option Setting File.
 
-Copyright 2015-2022 Antenna House, Inc.
+Copyright 2015-2023 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -33,8 +33,22 @@ limitations under the License.
 
 <!ENTITY % jpeg-quality.model "CDATA">
 
+<!ENTITY % length.model "CDATA">
+
 <!ENTITY % monochrome.compression.list "ccitt4|ccitt3|runlength|zlib
                                         |none">
+
+<!ENTITY % named-length.list "veryverythinmathspace|verythinmathspace
+                              |thinmathspace|mediummathspace
+                              |thickmathspace|verythickmathspace
+                              |veryverythickmathspace
+                              |negativeveryverythinmathspace
+                              |negativeverythinmathspace
+                              |negativethinmathspace
+                              |negativemediummathspace
+                              |negativethickmathspace
+                              |negativeverythickmathspace
+                              |negativeveryverythickmathspace">
 
 <!ENTITY % pass-through.model "CDATA">
 
@@ -49,9 +63,10 @@ limitations under the License.
 
 <!ENTITY % formatter-config.model "formatter-settings?,font-settings?,
                                    pdf-settings?,ps-settings?,
-                                   svg-settings?,text-settings?,
-                                   mathml-settings?,cgm-settings?,
-                                   xslt-settings?,analyzer-settings?">
+                                   svg-render-settings?,svg-settings?,
+                                   text-settings?,mathml-settings?,
+                                   cgm-settings?,xslt-settings?,
+                                   analyzer-settings?">
 
 <!-- start = formatter-config -->
 
@@ -84,7 +99,11 @@ limitations under the License.
   bpil-limit-chars CDATA #IMPLIED
   bpil-minimum-line-width CDATA #IMPLIED
   bpil-penalty-hyphenation %bpil-penalty-hyphenation.model; #IMPLIED
-  css-media-type NMTOKEN #IMPLIED
+  condensed-text-align-last (%ah.boolean;|justify) #IMPLIED
+  css-allow-bare-expression (%ah.boolean;) #IMPLIED
+  css-child-match-root (%ah.boolean;) #IMPLIED
+  css-child-match-root (%ah.boolean;) #IMPLIED
+  css-float-in-float NMTOKEN #IMPLIED
   default-CJK NMTOKEN #IMPLIED
   default-color CDATA #IMPLIED
   default-font-size NMTOKEN #IMPLIED
@@ -102,12 +121,13 @@ limitations under the License.
   display-alttext (%ah.boolean;) #IMPLIED
   external-entity (%ah.boolean;) #IMPLIED
   family-name-syntax (auto|loose|strict) #IMPLIED
-  fixed-width-space-treatment (false|true|always) #IMPLIED
+  fixed-width-space-treatment (%ah.boolean;|always) #IMPLIED
   hair-space-width CDATA #IMPLIED
   hyphenation-min (%ah.boolean;|without-exceptions) #IMPLIED
   HyphenationOption (%ah.boolean;) #IMPLIED
   hyphenation-TeX CDATA #IMPLIED
   hyphen-min (%ah.boolean;) #IMPLIED
+  ignore-certificate-error (%ah.boolean;) #IMPLIED
   intrusion-displace-mode CDATA #IMPLIED
   img-alt (%ah.boolean;) #IMPLIED
   issue-scale-to-fit (%ah.boolean;) #IMPLIED
@@ -145,6 +165,7 @@ limitations under the License.
   table-auto-layout-limit CDATA #IMPLIED
   table-is-reference-area (%ah.boolean;) #IMPLIED
   text-autospace (%ah.boolean;) #IMPLIED
+  text-autospace-mode (6|7) #IMPLIED
   text-autospace-width CDATA #IMPLIED
   text-decoration-baseline-mode CDATA #IMPLIED
   text-decoration-mode CDATA #IMPLIED
@@ -157,13 +178,28 @@ limitations under the License.
   text-underline-mode CDATA #IMPLIED
   thin-space-width CDATA #IMPLIED
   two-pass-formatting (%ah.boolean;) #IMPLIED
+  unresolved-internal-destination (0|1|2|3|4) #IMPLIED
   use-default-page-margin-CSS (%ah.boolean;) #IMPLIED
   use-default-page-margin-XSL (%ah.boolean;) #IMPLIED
   vertical-block-width-mode CDATA #IMPLIED
   vertical-coloring-text CDATA #IMPLIED
   vertical-underline-side NMTOKEN #IMPLIED
   viewport-length-units-mode CDATA #IMPLIED
-  WindowsFontAPI CDATA #IMPLIED
+  watermark-fill-color CDATA #IMPLIED
+  watermark-font-family CDATA #IMPLIED
+  watermark-font-style CDATA #IMPLIED
+  watermark-font-weight CDATA #IMPLIED
+  watermark-opacity CDATA #IMPLIED
+  watermark-stroke-color CDATA #IMPLIED
+  watermark-stroke-width CDATA #IMPLIED
+  watermark-rotate CDATA #IMPLIED
+  watermark-scale CDATA #IMPLIED
+  watermark-text CDATA #IMPLIED
+  watermark2-font-family CDATA #IMPLIED
+  watermark2-font-style CDATA #IMPLIED
+  watermark2-font-weight CDATA #IMPLIED
+  watermark2-text CDATA #IMPLIED
+  white-space-collapse-mode (6|7) #IMPLIED
   zwsp-mode (5|6) #IMPLIED>
 
 <!ELEMENT list-style-type EMPTY>
@@ -354,6 +390,7 @@ limitations under the License.
   joboptions CDATA #IMPLIED
   jpeg-quality CDATA #IMPLIED
   linearized (%ah.boolean;) #IMPLIED
+  mediabox-origin-zero (%ah.boolean;) #IMPLIED
   monochrome-compression (%monochrome.compression.list;) #IMPLIED
   monochrome-compression-default (%monochrome.compression.list;) #IMPLIED
   monochrome-compression-minimum (%monochrome.compression.list;) #IMPLIED
@@ -456,7 +493,12 @@ limitations under the License.
   linebreakstyle (before|after|duplicate) #IMPLIED>
 
 <!ATTLIST mathml-settings
-  double_struck NMTOKEN #IMPLIED
+  mathDisplay (inline|block|context) #IMPLIED
+  scriptsizemultiplier CDATA #IMPLIED
+  scriptsizemultiplierMscarries CDATA #IMPLIED
+  scriptminsize NMTOKEN #IMPLIED
+  scriptmaxsize NMTOKEN #IMPLIED
+  largeop-multiplier CDATA #IMPLIED
   error-display NMTOKEN #IMPLIED
   fraktur NMTOKEN #IMPLIED
   mode NMTOKEN #IMPLIED
@@ -464,15 +506,13 @@ limitations under the License.
   opspace-multiplier CDATA #IMPLIED
   sans-serif NMTOKEN #IMPLIED
   script NMTOKEN #IMPLIED
-  script-maxnest CDATA #IMPLIED
-  scriptminsize NMTOKEN #IMPLIED
-  scriptsizemultiplier CDATA #IMPLIED>
+  script-maxnest CDATA #IMPLIED>
 
 <!ENTITY % munderover.model "">
 
 <!ENTITY % munderover.attlist "
-  bar-padding CDATA #REQUIRED
-  bar-width CDATA #REQUIRED
+  bar-padding CDATA #IMPLIED
+  bar-width CDATA #IMPLIED
   integral-largeop-overscript-space CDATA #IMPLIED
   integral-largeop-underscript-space CDATA #IMPLIED
   integral-overscript-space CDATA #IMPLIED
@@ -486,10 +526,37 @@ limitations under the License.
   underbar-space CDATA #REQUIRED
   underscript-space CDATA #REQUIRED">
 
+<!--
+,
+attribute  { xsd:NMTOKEN }?,
+attribute  { xsd:decimal }?,
+attribute scriptsizemultiplier { xsd:decimal }?
+-->
+
 <!ELEMENT munderover EMPTY>
 <!ATTLIST munderover
   %munderover.attlist;
   %munderover.model;>
+
+<!ENTITY % svg-render-settings.model "">
+
+<!ENTITY % svg-render-settings.attlist "
+  current-color-eval-at-painting (%ah.boolean;) #IMPLIED
+  image-element-eval-as-svg20 (%ah.boolean;) #IMPLIED
+  inherit-svg-fill-color (%ah.boolean;) #IMPLIED
+  outermost-svg-eval-as-isolate (%ah.boolean;) #IMPLIED
+  radial-gradient-eval-as-svg20 (%ah.boolean;) #IMPLIED
+  rasterize-dpi CDATA #IMPLIED
+  rasterize-size-lower-limit CDATA #IMPLIED
+  rasterize-size-upper-limit CDATA #IMPLIED
+  responsive-svg-size CDATA #IMPLIED
+  use-element-eval-as-shadow-element (%ah.boolean;) #IMPLIED
+  width-height-as-presentation-attribute (%ah.boolean;) #IMPLIED">
+
+<!ELEMENT svg-render-settings EMPTY>
+<!ATTLIST svg-render-settings
+  %svg-render-settings.attlist;
+  %svg-render-settings.model;>
 
 <!ENTITY % svg-settings.model "">
 

@@ -2,7 +2,7 @@
 <project name="ahfsettings" basedir="." default="schema.translate">
 <description>Antenna House Option Setting File.</description>
 <!--
-     Copyright 2016 Antenna House, Inc.
+     Copyright 2016-2023 Antenna House, Inc.
 -->
 
 <!-- PROPERTIES -->
