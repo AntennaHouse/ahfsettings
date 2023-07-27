@@ -139,13 +139,15 @@ script.list =
   | 'Khmr'
   | 'Laoo'
   | 'Mymr'
-  | 'Kana'
-  | 'Hira'
+  #| 'Kana'
+  #| 'Hira'
   | 'Hang'
-  | 'Hani'
+  #| 'Hani'
   | 'Hans'
   | 'Hant'
   | 'Jpan'
+  | 'Zsye'
+  | 'Zsym'
   | '.'
   | ''
 
@@ -169,11 +171,11 @@ formatter-config.model =
     font-settings?,
     pdf-settings?,
     ps-settings?,
-    svg-render-settings?,
-    svg-settings?,
-    text-settings?,
     mathml-settings?,
+    svg-settings?,
+    svg-render-settings?,
     cgm-settings?,
+    text-settings?,
     xslt-settings?,
     analyzer-settings?)
 
@@ -229,7 +231,9 @@ formatter-settings.attlist =
    ## Whether pseudo-classes match root element: true | false
    attribute css-child-match-root { ah.boolean }?,
    ## Whether nested floats are allowed in CSS: true | false
-   attribute css-float-in-float { xsd:NCName }?,
+   attribute css-float-in-float { ah.boolean }?,
+   ## @media tokens that apply to Antenna House Formatter
+   attribute css-media-type { text }?,
    attribute default-CJK { xsd:NCName }?,
    attribute default-color { text }?,
    attribute default-font-size { xsd:NMTOKEN }?,
@@ -648,6 +652,7 @@ pdf-settings.attlist =
          attribute monochrome-downsampling-target-dpi-minimum { dpi.model }?,
          ## Whether to embed multimedia in PDF when axf:multimedia-treatment="auto": embed | absolute-link | relative-link | richmedia | richmedia-windowed
          attribute multimedia-treatment { 'embed' | 'absolute-link' | 'relative-link' | 'richmedia' | 'richmedia-windowed' }?,
+   	 ## Whether to enable the role map and axf:pdftag="''" support: true | false
          attribute new-tagging-mode { ah.boolean }?,
          ## Whether to permit text access for screen reader devices of PDF files: false | true
          attribute no-accessibility { ah.boolean }?,
