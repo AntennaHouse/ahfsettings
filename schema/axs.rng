@@ -186,13 +186,17 @@
       <value>Khmr</value>
       <value>Laoo</value>
       <value>Mymr</value>
-      <value>Kana</value>
-      <value>Hira</value>
+      <!--
+        | 'Kana'
+        | 'Hira'
+      -->
       <value>Hang</value>
-      <value>Hani</value>
+      <!-- | 'Hani' -->
       <value>Hans</value>
       <value>Hant</value>
       <value>Jpan</value>
+      <value>Zsye</value>
+      <value>Zsym</value>
       <value>.</value>
       <value/>
     </choice>
@@ -231,19 +235,19 @@
       <ref name="ps-settings"/>
     </optional>
     <optional>
-      <ref name="svg-render-settings"/>
+      <ref name="mathml-settings"/>
     </optional>
     <optional>
       <ref name="svg-settings"/>
     </optional>
     <optional>
-      <ref name="text-settings"/>
-    </optional>
-    <optional>
-      <ref name="mathml-settings"/>
+      <ref name="svg-render-settings"/>
     </optional>
     <optional>
       <ref name="cgm-settings"/>
+    </optional>
+    <optional>
+      <ref name="text-settings"/>
     </optional>
     <optional>
       <ref name="xslt-settings"/>
@@ -403,11 +407,6 @@
     </optional>
     <optional>
       <attribute name="css-child-match-root">
-        <ref name="ah.boolean"/>
-      </attribute>
-    </optional>
-    <optional>
-      <attribute name="css-child-match-root">
         <a:documentation>Whether pseudo-classes match root element: true | false</a:documentation>
         <ref name="ah.boolean"/>
       </attribute>
@@ -415,7 +414,12 @@
     <optional>
       <attribute name="css-float-in-float">
         <a:documentation>Whether nested floats are allowed in CSS: true | false</a:documentation>
-        <data type="NCName"/>
+        <ref name="ah.boolean"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="css-media-type">
+        <a:documentation>@media tokens that apply to Antenna House Formatter</a:documentation>
       </attribute>
     </optional>
     <optional>
@@ -1711,6 +1715,7 @@
     </optional>
     <optional>
       <attribute name="new-tagging-mode">
+        <a:documentation>Whether to enable the role map and axf:pdftag="''" support: true | false</a:documentation>
         <ref name="ah.boolean"/>
       </attribute>
     </optional>

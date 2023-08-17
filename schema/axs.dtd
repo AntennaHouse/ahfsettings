@@ -63,9 +63,9 @@ limitations under the License.
 
 <!ENTITY % formatter-config.model "formatter-settings?,font-settings?,
                                    pdf-settings?,ps-settings?,
-                                   svg-render-settings?,svg-settings?,
-                                   text-settings?,mathml-settings?,
-                                   cgm-settings?,xslt-settings?,
+                                   mathml-settings?,svg-settings?,
+                                   svg-render-settings?,cgm-settings?,
+                                   text-settings?,xslt-settings?,
                                    analyzer-settings?">
 
 <!-- start = formatter-config -->
@@ -102,8 +102,8 @@ limitations under the License.
   condensed-text-align-last (%ah.boolean;|justify) #IMPLIED
   css-allow-bare-expression (%ah.boolean;) #IMPLIED
   css-child-match-root (%ah.boolean;) #IMPLIED
-  css-child-match-root (%ah.boolean;) #IMPLIED
-  css-float-in-float NMTOKEN #IMPLIED
+  css-float-in-float (%ah.boolean;) #IMPLIED
+  css-media-type CDATA #IMPLIED
   default-CJK NMTOKEN #IMPLIED
   default-color CDATA #IMPLIED
   default-font-size NMTOKEN #IMPLIED

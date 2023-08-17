@@ -197,13 +197,12 @@
       <xs:enumeration value="Khmr"/>
       <xs:enumeration value="Laoo"/>
       <xs:enumeration value="Mymr"/>
-      <xs:enumeration value="Kana"/>
-      <xs:enumeration value="Hira"/>
       <xs:enumeration value="Hang"/>
-      <xs:enumeration value="Hani"/>
       <xs:enumeration value="Hans"/>
       <xs:enumeration value="Hant"/>
       <xs:enumeration value="Jpan"/>
+      <xs:enumeration value="Zsye"/>
+      <xs:enumeration value="Zsym"/>
       <xs:enumeration value="."/>
       <xs:enumeration value=""/>
     </xs:restriction>
@@ -233,11 +232,11 @@
       <xs:element minOccurs="0" ref="font-settings"/>
       <xs:element minOccurs="0" ref="pdf-settings"/>
       <xs:element minOccurs="0" ref="ps-settings"/>
-      <xs:element minOccurs="0" ref="svg-render-settings"/>
-      <xs:element minOccurs="0" ref="svg-settings"/>
-      <xs:element minOccurs="0" ref="text-settings"/>
       <xs:element minOccurs="0" ref="mathml-settings"/>
+      <xs:element minOccurs="0" ref="svg-settings"/>
+      <xs:element minOccurs="0" ref="svg-render-settings"/>
       <xs:element minOccurs="0" ref="cgm-settings"/>
+      <xs:element minOccurs="0" ref="text-settings"/>
       <xs:element minOccurs="0" ref="xslt-settings"/>
       <xs:element minOccurs="0" ref="analyzer-settings"/>
     </xs:sequence>
@@ -351,15 +350,19 @@
         <xs:documentation>Whether expressions not enclosed in 'calc()' are allowed: true | false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="css-child-match-root" type="ah.boolean"/>
     <xs:attribute name="css-child-match-root" type="ah.boolean">
       <xs:annotation>
         <xs:documentation>Whether pseudo-classes match root element: true | false</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="css-float-in-float" type="xs:NCName">
+    <xs:attribute name="css-float-in-float" type="ah.boolean">
       <xs:annotation>
         <xs:documentation>Whether nested floats are allowed in CSS: true | false</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="css-media-type">
+      <xs:annotation>
+        <xs:documentation>@media tokens that apply to Antenna House Formatter</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="default-CJK" type="xs:NCName"/>
@@ -1175,7 +1178,11 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
-    <xs:attribute name="new-tagging-mode" type="ah.boolean"/>
+    <xs:attribute name="new-tagging-mode" type="ah.boolean">
+      <xs:annotation>
+        <xs:documentation>Whether to enable the role map and axf:pdftag="''" support: true | false</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="no-accessibility" type="ah.boolean">
       <xs:annotation>
         <xs:documentation>Whether to permit text access for screen reader devices of PDF files: false | true</xs:documentation>
