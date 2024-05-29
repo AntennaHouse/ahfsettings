@@ -3,7 +3,7 @@
 <!--
 Schema for Antenna House Option Setting File.
 
-Copyright 2015-2023 Antenna House, Inc.
+Copyright 2015-2024 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -56,6 +56,8 @@ limitations under the License.
 
 <!ENTITY % script.list "CDATA">
 
+<!ENTITY % ah.errorNumber "CDATA">
+
 <!ENTITY % language-code-space.atts "
   language CDATA #REQUIRED
   code CDATA #IMPLIED
@@ -85,16 +87,20 @@ limitations under the License.
 
 <!ATTLIST formatter-settings
   abbreviation-character-count CDATA #IMPLIED
+  append-non-end-of-line-characters CDATA #IMPLIED
+  append-non-starter-characters CDATA #IMPLIED
+  apply-default-html-css-to-XML (%ah.boolean;) #IMPLIED
   auto-break-footnote (%ah.boolean;) #IMPLIED
   auto-formatter-type (html|xhtml) #IMPLIED
+  avoid-orphan-single-word CDATA #IMPLIED
   avoid-widow-words-cjk-punctuation (%ah.boolean;) #IMPLIED
   axf-formatter-config (%ah.boolean;) #IMPLIED
   baseline-mode (4|5|6) #IMPLIED
-  bidi-override-mode CDATA #IMPLIED
   bold-ratio CDATA #IMPLIED
-  border-medium-width NMTOKEN #IMPLIED
-  border-thick-width NMTOKEN #IMPLIED
-  border-thin-width NMTOKEN #IMPLIED
+  border-medium-width %length.model; #IMPLIED
+  border-thick-width %length.model; #IMPLIED
+  border-thin-width %length.model; #IMPLIED
+  boxshadow-resolution-dpi CDATA #IMPLIED
   bpil CDATA #IMPLIED
   bpil-limit-chars CDATA #IMPLIED
   bpil-minimum-line-width CDATA #IMPLIED
@@ -102,6 +108,7 @@ limitations under the License.
   condensed-text-align-last (%ah.boolean;|justify) #IMPLIED
   css-allow-bare-expression (%ah.boolean;) #IMPLIED
   css-child-match-root (%ah.boolean;) #IMPLIED
+  css-debug (%ah.boolean;) #IMPLIED
   css-float-in-float (%ah.boolean;) #IMPLIED
   css-media-type CDATA #IMPLIED
   default-CJK NMTOKEN #IMPLIED
@@ -119,30 +126,35 @@ limitations under the License.
   default-page-width NMTOKEN #IMPLIED
   descendant-or-self-files (%ah.boolean;) #IMPLIED
   display-alttext (%ah.boolean;) #IMPLIED
+  double-hyphen-translineation CDATA #IMPLIED
+  error-if-overflow (%ah.boolean;) #IMPLIED
+  except-non-end-of-line-characters CDATA #IMPLIED
+  except-non-starter-characters CDATA #IMPLIED
   external-entity (%ah.boolean;) #IMPLIED
   family-name-syntax (auto|loose|strict) #IMPLIED
+  fix-css-img-percentage (%ah.boolean;) #IMPLIED
   fixed-width-space-treatment (%ah.boolean;|always) #IMPLIED
   hair-space-width CDATA #IMPLIED
-  hyphenation-min (%ah.boolean;|without-exceptions) #IMPLIED
+  href-page-link (%ah.boolean;) #IMPLIED
+  hyphen-min (%ah.boolean;|without-exceptions) #IMPLIED
+  hyphenation-keep-mode (word|line) #IMPLIED
   HyphenationOption (%ah.boolean;) #IMPLIED
   hyphenation-TeX CDATA #IMPLIED
-  hyphen-min (%ah.boolean;) #IMPLIED
   ignore-certificate-error (%ah.boolean;) #IMPLIED
   intrusion-displace-mode CDATA #IMPLIED
-  img-alt (%ah.boolean;) #IMPLIED
   issue-scale-to-fit (%ah.boolean;) #IMPLIED
   jamo-ligature (%ah.boolean;) #IMPLIED
   justify-leader (%ah.boolean;) #IMPLIED
   justify-rowspan-height (%ah.boolean;) #IMPLIED
   keep-footnote-anchor (%ah.boolean;) #IMPLIED
   latin-ligature (%ah.boolean;) #IMPLIED
+  no-disp-warnings CDATA #IMPLIED
   non-starter-ideographic-space (%ah.boolean;) #IMPLIED
   normal-line-height CDATA #IMPLIED
-  normalize NMTOKEN #IMPLIED
+  normalize (none|nfc|nfd|nfkc|nfkd) #IMPLIED
   oblique-skew CDATA #IMPLIED
-  omit-uppercase-word-accents CDATA #IMPLIED
-  output-area-id (%ah.boolean;) #IMPLIED
-  output-fo-tree (%ah.boolean;) #IMPLIED
+  osdc-cmd CDATA #IMPLIED
+  osdc-param CDATA #IMPLIED
   overflow-limit-block NMTOKEN #IMPLIED
   overflow-limit-inline NMTOKEN #IMPLIED
   pair-kerning (%ah.boolean;) #IMPLIED
@@ -151,10 +163,10 @@ limitations under the License.
   printer-marks-zero-margin CDATA #IMPLIED
   PrinterOrientation NMTOKEN #IMPLIED
   PscriptPassThrough (%ah.boolean;) #IMPLIED
+  pair-kerning (%ah.boolean;) #REQUIRED
   punctuation-spacing CDATA #IMPLIED
   punctuation-trim (%ah.boolean;) #IMPLIED
   pxpi CDATA #IMPLIED
-  responsive-svg-size (reference|viewBox) #IMPLIED
   ruby-align CDATA #IMPLIED
   SeparatePrinterDuplexJob (%ah.boolean;) #IMPLIED
   small-caps-emulation-always (%ah.boolean;) #IMPLIED
@@ -200,6 +212,7 @@ limitations under the License.
   watermark2-font-weight CDATA #IMPLIED
   watermark2-text CDATA #IMPLIED
   white-space-collapse-mode (6|7) #IMPLIED
+  xml-catalog CDATA #IMPLIED
   zwsp-mode (5|6) #IMPLIED>
 
 <!ELEMENT list-style-type EMPTY>
@@ -320,14 +333,16 @@ limitations under the License.
 <!ELEMENT pdf-settings (%pdf-settings.model;)>
 
 <!ATTLIST pdf-settings
+  allow-deprecated-annotation (%ah.boolean;) #IMPLIED
+  allow-embedding-lower-versions (%ah.boolean;) #IMPLIED
   allow-javascript (%ah.boolean;) #IMPLIED
   allow-nest-alt-text (%ah.boolean;) #IMPLIED
-  certificate-name NMTOKEN #IMPLIED
   check-tag-relationship (%ah.boolean;) #IMPLIED
   color-compression (%compression.list;) #IMPLIED
   color-compression-default (%compression.list;) #IMPLIED
   color-compression-minimum (%compression.list;) #IMPLIED
   color-conversion (none|black|gray|all-gray|all-cmyk) #IMPLIED
+  color-conversion-k100 (%ah.boolean;) #IMPLIED
   color-downsampling (%downsampling.list;) #IMPLIED
   color-downsampling-above-dpi %dpi.model; #IMPLIED
   color-downsampling-target-dpi %dpi.model; #IMPLIED
@@ -388,7 +403,7 @@ limitations under the License.
   import-tagged-pdf (%ah.boolean;) #IMPLIED
   import-textmarkup-annotation (%ah.boolean;) #IMPLIED
   joboptions CDATA #IMPLIED
-  jpeg-quality CDATA #IMPLIED
+  jpeg-quality %jpeg-quality.model; #IMPLIED
   linearized (%ah.boolean;) #IMPLIED
   mediabox-origin-zero (%ah.boolean;) #IMPLIED
   monochrome-compression (%monochrome.compression.list;) #IMPLIED
@@ -561,26 +576,18 @@ attribute scriptsizemultiplier { xsd:decimal }?
 <!ENTITY % svg-settings.model "">
 
 <!ENTITY % svg-settings.attlist "
-  base-uri CDATA #IMPLIED
   copy-image-path CDATA #IMPLIED
   copy-image-prefix CDATA #IMPLIED
-  embed-all-fonts (%ah.boolean;) #IMPLIED
-  encoding CDATA #IMPLIED
-  error-on-embed-fault (%ah.boolean;) #IMPLIED
+  create-copy-image-path (%ah.boolean;) #IMPLIED
   format CDATA #IMPLIED
   gzip-compression (%ah.boolean;) #IMPLIED
   image-conversion NMTOKEN #IMPLIED
-  image-downsampling-dpi %dpi.model; #IMPLIED
-  image-downsampling-method CDATA #IMPLIED
   image-processing NMTOKEN #IMPLIED
-  jpeg-quality CDATA #IMPLIED
-  rasterize-resolution CDATA #IMPLIED
+  jpeg-quality %jpeg-quality.model; #IMPLIED
   rename-copy-image (%ah.boolean;) #IMPLIED
-  single-file-max-height CDATA #IMPLIED
-  single-file-max-pages CDATA #IMPLIED
-  single-page-number (%ah.boolean;) #IMPLIED
   singlefile (%ah.boolean;) #IMPLIED
-  svg-version CDATA #IMPLIED">
+  singlefile-number (%ah.boolean;) #IMPLIED
+  svg-version (2.0|1.1|Basic|Tiny) #IMPLIED">
 
 <!ELEMENT svg-settings EMPTY>
 <!ATTLIST svg-settings
