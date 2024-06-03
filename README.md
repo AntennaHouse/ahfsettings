@@ -65,7 +65,7 @@ The Oxygen framwork provides a template Option Setting File. Unused elements may
 
 ## License
 
-Copyright 2015-2023 Antenna House, Inc.
+Copyright 2015-2024 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -143,7 +143,7 @@ When you open an Option Setting File – where the document element is `formatte
 ## ライセンス
 
 
-Copyright 1999-2023 Antenna House, Inc.
+Copyright 1999-2024 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
