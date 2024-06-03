@@ -163,7 +163,6 @@ limitations under the License.
   printer-marks-zero-margin CDATA #IMPLIED
   PrinterOrientation NMTOKEN #IMPLIED
   PscriptPassThrough (%ah.boolean;) #IMPLIED
-  pair-kerning (%ah.boolean;) #REQUIRED
   punctuation-spacing CDATA #IMPLIED
   punctuation-trim (%ah.boolean;) #IMPLIED
   pxpi CDATA #IMPLIED
@@ -581,8 +580,8 @@ attribute scriptsizemultiplier { xsd:decimal }?
   create-copy-image-path (%ah.boolean;) #IMPLIED
   format CDATA #IMPLIED
   gzip-compression (%ah.boolean;) #IMPLIED
-  image-conversion NMTOKEN #IMPLIED
-  image-processing NMTOKEN #IMPLIED
+  image-conversion (auto|jpeg|png) #IMPLIED
+  image-processing (embed-all|link|copy-all|copy) #IMPLIED
   jpeg-quality %jpeg-quality.model; #IMPLIED
   rename-copy-image (%ah.boolean;) #IMPLIED
   singlefile (%ah.boolean;) #IMPLIED
