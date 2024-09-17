@@ -63,6 +63,10 @@ When you open an Option Setting File – where the document element is `formatte
 
 The Oxygen framwork provides a template Option Setting File. Unused elements may be deleted from your Option Setting File.
 
+## Modifying **ahfsettings**
+
+See "[Developing ahfsettings](developing.md)".
+
 ## License
 
 Copyright 2015-2024 Antenna House, Inc.

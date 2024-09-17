@@ -168,7 +168,7 @@
        excludes="**"
        update="true">
     <zipfileset dir="."
-		includes="README.md, LICENSE*.md, ahfsettings.framework"
+		includes="README.md, developing.md, LICENSE*.md, ahfsettings.framework"
 		prefix="${ant.project.name}" />
     <!--<zipfileset dir="css" includes="*.css" prefix="${ant.project.name}/css" />-->
     <zipfileset dir="schema"
