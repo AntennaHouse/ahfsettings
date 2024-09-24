@@ -168,14 +168,14 @@
        excludes="**"
        update="true">
     <zipfileset dir="."
-		includes="README.md, developing.md, LICENSE*.md, ahfsettings.framework"
+		includes="README.md, ChangeLog.md, developing.md, LICENSE*.md, ahfsettings.framework"
 		prefix="${ant.project.name}" />
-    <!--<zipfileset dir="css" includes="*.css" prefix="${ant.project.name}/css" />-->
     <zipfileset dir="schema"
 		includes="catalog.xml, *.rng"
 		prefix="${ant.project.name}/schema" />
   </zip>
 </target>
+
 <target name="release" depends="add-on.xml, framework.zip" />
 
 <!-- Utility targets. -->
