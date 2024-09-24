@@ -390,19 +390,11 @@ limitations under the License.
   grayscale-jpeg-quality %jpeg-quality.model; #IMPLIED
   grayscale-jpeg-quality-default %jpeg-quality.model; #IMPLIED
   grayscale-jpeg-quality-minimum %jpeg-quality.model; #IMPLIED
-  gs-add-options CDATA #IMPLIED
+  gs-options CDATA #IMPLIED
   image-color-profile (%ah.boolean;) #IMPLIED
-  image-compression NMTOKEN #IMPLIED
-  image-downsampling NMTOKEN #IMPLIED
-  image-downsampling-above-dpi %dpi.model; #IMPLIED
-  image-downsampling-target-dpi %dpi.model; #IMPLIED
-  import-3D-annotation (%ah.boolean;) #IMPLIED
-  import-3Dannotation (%ah.boolean;) #IMPLIED
   import-annotation-types CDATA #IMPLIED
   import-tagged-pdf (%ah.boolean;) #IMPLIED
-  import-textmarkup-annotation (%ah.boolean;) #IMPLIED
   joboptions CDATA #IMPLIED
-  jpeg-quality %jpeg-quality.model; #IMPLIED
   linearized (%ah.boolean;) #IMPLIED
   mediabox-origin-zero (%ah.boolean;) #IMPLIED
   monochrome-compression (%monochrome.compression.list;) #IMPLIED
