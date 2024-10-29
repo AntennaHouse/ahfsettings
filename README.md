@@ -147,7 +147,7 @@ When you open an Option Setting File – where the document element is `formatte
 ## ライセンス
 
 
-Copyright 1999-2024 Antenna House, Inc.
+Copyright 2015-2024 Antenna House, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

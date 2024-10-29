@@ -231,17 +231,22 @@
   </xs:attributeGroup>
   <!-- start = formatter-config -->
   <xs:element name="formatter-config" type="formatter-config.model"/>
+  <!--
+    Elements in the same sequence as the manual.
+    Antenna House Formatter does not require any
+    order, but cannot generate a DTD if using '&'.
+  -->
   <xs:complexType name="formatter-config.model">
     <xs:sequence>
       <xs:element minOccurs="0" ref="formatter-settings"/>
       <xs:element minOccurs="0" ref="font-settings"/>
       <xs:element minOccurs="0" ref="pdf-settings"/>
       <xs:element minOccurs="0" ref="ps-settings"/>
-      <xs:element minOccurs="0" ref="mathml-settings"/>
       <xs:element minOccurs="0" ref="svg-settings"/>
       <xs:element minOccurs="0" ref="svg-render-settings"/>
-      <xs:element minOccurs="0" ref="cgm-settings"/>
       <xs:element minOccurs="0" ref="text-settings"/>
+      <xs:element minOccurs="0" ref="mathml-settings"/>
+      <xs:element minOccurs="0" ref="cgm-settings"/>
       <xs:element minOccurs="0" ref="xslt-settings"/>
       <xs:element minOccurs="0" ref="analyzer-settings"/>
     </xs:sequence>
