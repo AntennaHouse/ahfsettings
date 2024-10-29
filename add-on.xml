@@ -3,13 +3,37 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.oxygenxml.com/ns/extension http://www.oxygenxml.com/ns/extension/extensions.xsd">
     <xt:extension id="ahfsettings">
-        <xt:location href="https://github.com/AntennaHouse/ahfsettings/releases/download/v7.4.5/ahfsettings-framework-7.4.5.zip"/>
-        <xt:version>7.4.5</xt:version>
+        <xt:location href="https://github.com/AntennaHouse/ahfsettings/releases/download/v7.4.6/ahfsettings-framework-7.4.6.zip"/>
+        <xt:version>7.4.6</xt:version>
         <xt:oxy_version>14.0+</xt:oxy_version>
         <xt:type>framework</xt:type>
         <xt:author>Antenna House, Inc.</xt:author>
         <xt:name>ahfsettings</xt:name>
-        <xt:description xmlns="http://www.w3.org/1999/xhtml">Edit Antenna House Formatter Option Settings File.</xt:description>
+        <xt:description xmlns="http://www.w3.org/1999/xhtml"><h1>ahfsettings</h1>
+<p>Edit Antenna House Formatter Option Settings File.</p>
+
+<p>See <a href="https://github.com/AntennaHouse/ahfsettings#en">https://github.com/AntennaHouse/ahfsettings#en</a>.</p>
+
+	<pre><![CDATA[# ahfsettings 7.4.6
+
+- SQF to rename some out-of-date attributes.
+- Inserting `ChangeLog.md` contents into release's `add-on.xml`.
+- Including template XML file in framework.
+
+# ahfsettings 7.4.5
+
+- `gs-add-options` replaced by `gs-options` in V7.1. (#3)
+- Added instructions for modifying the schema. (#3)
+- Removed some obsolete properties.
+
+# ahfsettings 7.4.4
+
+- Remove duplicate `pair-kerning`. (#2)
+ 
+# ahfsettings 7.4.3
+ 
+- Updated for Antenna House Formatter V7.4.
+]]></pre></xt:description>
         <xt:license><![CDATA[   Copyright 1999-2024 Antenna House, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +47,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
 ]]></xt:license>
     </xt:extension>
 </xt:extensions>
