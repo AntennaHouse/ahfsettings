@@ -1,9 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Antenna House Formatter Option Setting File. -->
 <formatter-config>
+    <!-- All child elements are optional.
+	 The schema enforces this order only
+	 so that the schema can be converted
+	 to a DTD. -->
     <formatter-settings />
     <font-settings />
     <pdf-settings />
     <ps-settings />
     <svg-settings />
+    <svg-render-settings />
     <text-settings />
     <mathml-settings />
     <cgm-settings />
