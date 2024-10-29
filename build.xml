@@ -128,11 +128,28 @@
 
 <!-- Release targets. -->
 
+<macrodef name="update-copyright">
+  <attribute name="file" />
+  <attribute name="flags" default="g" />
+  <sequential>
+    <replaceregexp file="@{file}"
+		   flags="@{flags}"
+		   encoding="UTF-8">
+      <regexp pattern='Copyright ([0-9]+)-[0-9]+' />
+      <substitution
+	  expression="Copyright \1-${year}"/>
+    </replaceregexp>
+  </sequential>
+</macrodef>
+
 <target name="add-on.xml.uptodate">
   <condition property="add-on.xml.uptodate">
     <and>
-      <uptodate srcfile="${basedir.converted}/build.properties"
-		targetfile="${basedir.converted}/add-on.xml" />
+      <uptodate targetfile="${basedir.converted}/add-on.xml">
+	<srcfiles
+	    dir="${basedir.converted}"
+	    includes="build.properties, add-on.xml.in, ChangeLog.md" />
+      </uptodate>
       <isfalse value="${force}" />
     </and>
   </condition>
@@ -141,6 +158,9 @@
 <target name="add-on.xml" depends="add-on.xml.uptodate"
 	unless="add-on.xml.uptodate"
 	description="Update the version information in 'add-on.xml'.">
+  <update-copyright file="${ahfsettings.basedir.converted}/add-on.xml.in" />
+  <update-copyright file="${ahfsettings.basedir.converted}/LICENSE.md" />
+  <copy file="add-on.xml.in" tofile="add-on.xml" />
   <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
 		 encoding="UTF-8">
     <regexp pattern="&lt;xt:version>[^&lt;]+&lt;/xt:version>" />
@@ -152,17 +172,28 @@
     <substitution
 	expression="releases/download/v${version}/${ant.project.name}-framework-${version}.zip"/>
   </replaceregexp>
+  <loadfile srcfile="ChangeLog.md" property="changelog" />
   <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
 		 encoding="UTF-8">
-    <regexp pattern='Copyright ([0-9]+)-[0-9]+' />
-    <substitution
-	expression="Copyright \1-${year}"/>
+    <regexp pattern="@@ChangeLog@@" />
+    <substitution expression="${changelog}"/>
+  </replaceregexp>
+  <loadfile srcfile="LICENSE.md" property="license" />
+  <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
+		 encoding="UTF-8">
+    <regexp pattern="@@LICENSE@@" />
+    <substitution expression="${license}"/>
   </replaceregexp>
 </target>
 
-<target name="framework.zip" depends="schema.translate, add-on.xml"
-	description="Make a Zip archive of just the oXygen framework.">
+<target name="README.md"> 
+  <update-copyright file="${ahfsettings.basedir.converted}/README.md" />
+</target>
+
+<target name="framework.zip" depends="schema.translate, add-on.xml, README.md"
+	description="Make a Zip archive of just the oXygen framework."> 
   <mkdir dir="${ahfsettings.basedir.converted}/releases" />
+  <update-copyright file="${ahfsettings.basedir.converted}/README.md" />
   <zip destfile="${ahfsettings.basedir.converted}/releases/${ant.project.name}-framework-${version}.zip"
        basedir="${ahfsettings.basedir.converted}"
        excludes="**"
@@ -173,6 +204,12 @@
     <zipfileset dir="schema"
 		includes="catalog.xml, *.rng"
 		prefix="${ant.project.name}/schema" />
+    <zipfileset dir="schematron"
+		includes="*.sch"
+		prefix="${ant.project.name}/schematron" />
+    <zipfileset dir="template"
+		includes="*.xml, *.properties"
+		prefix="${ant.project.name}/template" />
   </zip>
 </target>
 
