@@ -561,7 +561,7 @@ attribute scriptsizemultiplier { xsd:decimal }?
   rasterize-dpi CDATA #IMPLIED
   rasterize-size-lower-limit CDATA #IMPLIED
   rasterize-size-upper-limit CDATA #IMPLIED
-  responsive-svg-size CDATA #IMPLIED
+  responsive-svg-size (reference|viewBox) #IMPLIED
   use-element-eval-as-shadow-element (%ah.boolean;) #IMPLIED
   width-height-as-presentation-attribute (%ah.boolean;) #IMPLIED">
 

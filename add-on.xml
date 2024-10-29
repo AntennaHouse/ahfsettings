@@ -16,9 +16,11 @@
 
 	<pre><![CDATA[# ahfsettings 7.4.6
 
-- SQF to rename some out-of-date attributes.
-- Inserting `ChangeLog.md` contents into release's `add-on.xml`.
-- Including template XML file in framework.
+- Changed element order to match manual sections.
+- SQF to rename or move some out-of-date attributes.
+- Renamed `LICENSE` to `LICENSE.md`.
+- Inserting `ChangeLog.md` and `LICENSE.md` into release's `add-on.xml`.
+- Including Schematron and template XML file in add-on Zip file.
 
 # ahfsettings 7.4.5
 
