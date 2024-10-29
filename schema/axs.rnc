@@ -169,16 +169,19 @@ formatter-config =
     formatter-config.model
 }
 
+# Elements in the same sequence as the manual.
+# Antenna House Formatter does not require any
+# order, but cannot generate a DTD if using '&'.
 formatter-config.model =
     (formatter-settings?,
     font-settings?,
     pdf-settings?,
     ps-settings?,
-    mathml-settings?,
     svg-settings?,
     svg-render-settings?,
-    cgm-settings?,
     text-settings?,
+    mathml-settings?,
+    cgm-settings?,
     xslt-settings?,
     analyzer-settings?)
 
