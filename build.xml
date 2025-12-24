@@ -160,6 +160,7 @@
 	description="Update the version information in 'add-on.xml'.">
   <update-copyright file="${ahfsettings.basedir.converted}/add-on.xml.in" />
   <update-copyright file="${ahfsettings.basedir.converted}/LICENSE.md" />
+  <delete file="add-on.xml" />
   <copy file="add-on.xml.in" tofile="add-on.xml" />
   <replaceregexp file="${ahfsettings.basedir.converted}/add-on.xml"
 		 encoding="UTF-8">

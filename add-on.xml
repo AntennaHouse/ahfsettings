@@ -14,7 +14,13 @@
 
 <p>See <a href="https://github.com/AntennaHouse/ahfsettings#en">https://github.com/AntennaHouse/ahfsettings#en</a>.</p>
 
-	<pre><![CDATA[# ahfsettings 7.4.6
+	<pre><![CDATA[# ahfsettings 7.5.1
+
+- **ahfsettings** version numbers correspond to the `version.xml` values of the Antenna House Formatter version current at the time of the release.
+- Updated for Antenna House Formatter V7.5R1.
+- Added `color-conversion-separation`, `embed-pdf-fatal-error`, `fix-css-running-element`, `float-breaking-y`, `ignore-rasterize-properties`, `mathmlSettingsMode`, and `memory-limit-size`.
+
+# ahfsettings 7.4.6
 
 - Changed element order to match manual sections.
 - SQF to rename or move some out-of-date attributes.
@@ -36,7 +42,7 @@
  
 - Updated for Antenna House Formatter V7.4.
 ]]></pre></xt:description>
-        <xt:license><![CDATA[   Copyright 1999-2024 Antenna House, Inc.
+        <xt:license><![CDATA[   Copyright 1999-2025 Antenna House, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
