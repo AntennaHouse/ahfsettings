@@ -6,7 +6,7 @@
 
 Schema for Antenna House Formatter 'Option Settings File'.
 
-**ahfsettings** version numbers correspond to the Antenna House Formatter version current at the time of the release.
+**ahfsettings** version numbers correspond to the `version.xml` values of the Antenna House Formatter version current at the time of the release.
 
 Each release includes schema files in Relax NG, Relax NG compact syntax, W3C XML Schema, and DTD formats.
 
