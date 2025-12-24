@@ -133,13 +133,16 @@ order, but cannot generate a DTD if using '&'.
   descendant-or-self-files (%ah.boolean;) #IMPLIED
   display-alttext (%ah.boolean;) #IMPLIED
   double-hyphen-translineation CDATA #IMPLIED
+  embed-pdf-fatal-error (2|3|4) #IMPLIED
   error-if-overflow (%ah.boolean;) #IMPLIED
   except-non-end-of-line-characters CDATA #IMPLIED
   except-non-starter-characters CDATA #IMPLIED
   external-entity (%ah.boolean;) #IMPLIED
   family-name-syntax (auto|loose|strict) #IMPLIED
   fix-css-img-percentage (%ah.boolean;) #IMPLIED
+  fix-css-running-element (%ah.boolean;) #IMPLIED
   fixed-width-space-treatment (%ah.boolean;|always) #IMPLIED
+  float-breaking-y (%ah.boolean;) #IMPLIED
   hair-space-width CDATA #IMPLIED
   href-page-link (%ah.boolean;) #IMPLIED
   hyphen-min (%ah.boolean;|without-exceptions) #IMPLIED
@@ -154,6 +157,7 @@ order, but cannot generate a DTD if using '&'.
   justify-rowspan-height (%ah.boolean;) #IMPLIED
   keep-footnote-anchor (%ah.boolean;) #IMPLIED
   latin-ligature (%ah.boolean;) #IMPLIED
+  memory-limit-size CDATA #IMPLIED
   no-disp-warnings CDATA #IMPLIED
   non-starter-ideographic-space (%ah.boolean;) #IMPLIED
   normal-line-height CDATA #IMPLIED
@@ -348,6 +352,7 @@ order, but cannot generate a DTD if using '&'.
   color-compression-minimum (%compression.list;) #IMPLIED
   color-conversion (none|black|gray|all-gray|all-cmyk) #IMPLIED
   color-conversion-k100 (%ah.boolean;) #IMPLIED
+  color-conversion-separation (%ah.boolean;) #IMPLIED
   color-downsampling (%downsampling.list;) #IMPLIED
   color-downsampling-above-dpi %dpi.model; #IMPLIED
   color-downsampling-target-dpi %dpi.model; #IMPLIED
@@ -518,7 +523,8 @@ order, but cannot generate a DTD if using '&'.
   opspace-multiplier CDATA #IMPLIED
   sans-serif NMTOKEN #IMPLIED
   script NMTOKEN #IMPLIED
-  script-maxnest CDATA #IMPLIED>
+  script-maxnest CDATA #IMPLIED
+  mathmlSettingsMode NMTOKEN #IMPLIED>
 
 <!ENTITY % munderover.model "">
 
@@ -538,13 +544,6 @@ order, but cannot generate a DTD if using '&'.
   underbar-space CDATA #REQUIRED
   underscript-space CDATA #REQUIRED">
 
-<!--
-,
-attribute  { xsd:NMTOKEN }?,
-attribute  { xsd:decimal }?,
-attribute scriptsizemultiplier { xsd:decimal }?
--->
-
 <!ELEMENT munderover EMPTY>
 <!ATTLIST munderover
   %munderover.attlist;
@@ -554,6 +553,7 @@ attribute scriptsizemultiplier { xsd:decimal }?
 
 <!ENTITY % svg-render-settings.attlist "
   current-color-eval-at-painting (%ah.boolean;) #IMPLIED
+  ignore-rasterize-properties (%ah.boolean;) #IMPLIED
   image-element-eval-as-svg20 (%ah.boolean;) #IMPLIED
   inherit-svg-fill-color (%ah.boolean;) #IMPLIED
   outermost-svg-eval-as-isolate (%ah.boolean;) #IMPLIED

@@ -1,3 +1,9 @@
+# ahfsettings 7.5.1
+
+- **ahfsettings** version numbers correspond to the `version.xml` values of the Antenna House Formatter version current at the time of the release.
+- Updated for Antenna House Formatter V7.5R1.
+- Added `color-conversion-separation`, `embed-pdf-fatal-error`, `fix-css-running-element`, `float-breaking-y`, `ignore-rasterize-properties`, `mathmlSettingsMode`, and `memory-limit-size`.
+
 # ahfsettings 7.4.6
 
 - Changed element order to match manual sections.

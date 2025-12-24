@@ -841,7 +841,7 @@ mathml-settings.attlist =
     attribute opspace-multiplier { xsd:decimal }?,
     attribute sans-serif { xsd:NCName }?,
     attribute script { xsd:NCName }?,
-    attribute script-maxnest { xsd:integer }?#,
+    attribute script-maxnest { xsd:integer }?,
     #attribute  { xsd:NMTOKEN }?,
     #attribute  { xsd:decimal }?,
     #attribute scriptsizemultiplier { xsd:decimal }?,
